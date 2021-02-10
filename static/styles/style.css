@@ -1,0 +1,27 @@
+:root {
+	--main-bg-color: AliceBlue;
+ 	--form-color: rgb(101, 157, 189, 0.6);
+ 	--supporting-color: rgb(101, 157, 200, 0.9);
+ 	--onclick-color: rgb(77, 141, 179);
+ 	--focus-color: rgb(69, 127, 161);
+
+	--background-main: #E5FFF5;
+	--original-purple: #6C63FF;
+	--lavender-blush: hsla(355, 43%, 95%, 1);
+	--thistle: hsla(315, 32%, 80%, 1);
+	--magic-mint: hsla(157, 100%, 84%, 1);
+	--liberty: hsla(238, 28%, 48%, 1);
+	--independence: hsla(262, 15%, 35%, 1); //text color
+}
+
+body {
+	font-style: Futura;
+	display: flexbox;
+	background-color: var(--background-main);
+	justify-content: center;
+}
+
+.search-logo {
+	width: 350px;
+	height: 250px;
+}

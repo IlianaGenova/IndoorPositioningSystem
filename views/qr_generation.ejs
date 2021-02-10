@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel='stylesheet' type='text/css' href='/public/css/main.css' />
+	<link rel='stylesheet' type='text/css' href='/public/css/qr-generation.css' />
+	<title>IPS</title>
+
+	<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+	<script "type=text/javascript" src="qrcode.min.js"></script>
+	<!-- <script src="html5-qrcode-master/lib/jsqrcode-combined.min.js"></script> 
+	<script src="html5-qrcode-master/lib/html5-qrcode.min.js"></script> -->
+
+</head>
+<body>
+	<div class="page">
+		<div class="body">
+			
+			<img class="logo" src="/svgs/phone_location.svg" alt="-Stay connected-">
+		
+			<form id="generate-qr" class="form" onsubmit="generateQR(); return false" >
+        <h1>Generate QR</h1>
+				<input type="input" id="UID" class="option" name="taguid" placeholder="Tag UID"/>
+				</br>
+				<input class="submit" type="submit" value="Generate">
+				<button class="code" id="qrcode" type="button" name="button" title='' onclick="" ></button>
+				<button class="submit print" id="printButton" type="button" name="button" title='print' onclick="printQR();" >Print</button>
+			</form>
+			
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		var isGenerated = false;
+		// const socket = io('localhost:3000');
+		// var form = document.getElementById("myForm");
+		// function handleForm(event) { event.preventDefault(); } 
+		// form.addEventListener('submit', handleForm);
+
+		function generateQR() {
+			var uid = document.getElementById("UID");
+			var address = "http://localhost:8080/?taguid=" + uid.value;
+
+			if(isGenerated) {
+				alert("QR already generated")
+				return
+			}
+
+			else if (!uid.value) {
+				alert("No UUID entered")
+				uid.focus()
+				return
+			}
+			
+			else if(!checkUID(uid.value)) {
+				alert("The UUID you entered is not valid: " + uid.value)
+				uid.focus()
+				return
+			}
+
+			else {
+				//generating qr using qrcode.js
+				var qrcode = new QRCode(document.getElementById("qrcode"), address)
+				isGenerated = true
+
+				//redirect to address on click of the button/qrcode
+				var route = 'window.location.href=\'' + address +'\''
+				document.getElementById("qrcode").setAttribute('onclick', route)
+
+				//display a 'print' button 
+				var button = document.getElementById("printButton").style.display = "block"
+			}
+
+			console.log(address)
+			event.preventDefault();
+			// var qrcode = new QRCode("qrcode");
+			 // qrcode.makeCode(uid.value);
+		}
+
+		function printQR() {
+			var divContents = document.getElementById("qrcode").innerHTML; 
+			var a = window.open('', '', 'height=500, width=500'); 
+			a.document.write('<html>'); 
+			a.document.write('<body > <br>'); 
+			a.document.write(divContents); 
+			a.document.write('</body></html>'); 
+			a.document.close(); 
+			a.print(); 
+		}
+
+		function checkUID(uid) {
+			//TODO: check len 26
+			//if(uid.length != 26) return false
+
+			//checks if the value is hex 
+			if(uid[0] != '0' || uid[1] != 'x') return false
+
+			//checks if bit values are valid
+			for(var i = 2; i < uid.length; i++) {
+				if(!((uid[i] >= '0' && uid[i] <= '9')
+				||  (uid[i] >= 'a' && uid[i] <= 'f')
+				||  (uid[i] >= 'A' && uid[i] <= 'F'))) 
+					return false
+			 }
+			 
+			 return true
+		}
+	</script>
+	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- <script src="html5-qrcode-master/lib/jsqrcode-combined.min.js"></script> 
+	<script src="html5-qrcode-master/lib/html5-qrcode.min.js"></script>	 -->
+</body>
+</html>
