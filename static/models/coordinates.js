@@ -18,15 +18,18 @@ var CoordSchema = new mongoose.Schema({
     type:
       {
         type: String,
-        enum: ['MultiPoint']
+        enum: ['MultiPoint'],
+        default: 'MultiPoint',
+        index: '2dsphere'
       }, 
     // "default" : [],
     coordinates: {
-      type: [{
-        _id: false,
-        lon: Number, 
-        lat: Number
-      }]
+      type:[[Number]] 
+      // [{
+      //   _id: false,
+      //   lon: Number, 
+      //   lat: Number
+      // }]
     }
   }
 });

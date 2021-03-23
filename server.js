@@ -119,11 +119,11 @@ app.get('/ranging', (req, res, next) => {
 		tagID: '0x668FF555353292929229',
 		anchorID: '0x668FF555353667267241437',
 		position: {
-			coordinates: {
-				lon: lon, 
-				lat: lat
-			}
-			// [[lon, lat], [lon, lat]]
+			coordinates: [[lon, lat], [lon, lat]]
+			// {
+			// 	lon: lon, 
+			// 	lat: lat
+			// }
 		}
 	}
 
@@ -141,13 +141,13 @@ app.get('/ranging', (req, res, next) => {
 			})
 		}
 		else {
-			console.log(conn.position)
-			var coords = {
-				lon: 7,
-				lat: 12
-			}
-			// [5, 6]
-			
+			// console.log(conn.position.coordinates[3][1])
+			console.log(conn.position.type + conn.anchorID.type)
+			var coords = [5, 6]
+			// {
+			// 	lon: 7,
+			// 	lat: 12
+			// }
 
 			Coords.updateOne(conn, 
 				{ $push: 
