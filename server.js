@@ -1,9 +1,11 @@
 //variables required from DB
+const secrets = require('./secrets')
 const MongoClient = require('mongodb').MongoClient
-const uri = "mongodb+srv://iliana:mojemoje@ips.ykhnr.mongodb.net/ips?retryWrites=true&w=majority"
+const uri = secrets.uri
 const client = new MongoClient(uri, { useNewUrlParser: true })
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+
 
 //client on connect -> DB
 client.connect(err => {
@@ -39,15 +41,13 @@ db.once('open', function () {
 // }
 // const server = http.createServer(requestListener);
 
-
-
 //express.js framework
 const express = require('express')
 const app = express()
 app.set('view engine', 'ejs');
 
 //starting up http server + socket.io conn
-const httpPort = 3000;
+const httpPort = secrets.httpPort
 const http = require('http');
 const server = http.createServer(app);
 const io = require('socket.io')(server);
@@ -55,7 +55,7 @@ io.on('connection', () => { /* … */ });
 server.listen(httpPort);
 
 //application port
-const port = 8080
+const port = secrets.port
 app.listen(port, () => {
 	console.log(`App listening at http://localhost:${port}`)
 })
