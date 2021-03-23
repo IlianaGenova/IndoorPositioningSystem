@@ -11,22 +11,24 @@
 <body>
 	<div class="page">
 		<div class="body">
-			<form id="login" class="form" action="/range" method="post" onsubmit="submitForm();">
-				<h1>Tag</h1>
-				<input type="input" class="option" name="name" placeholder="Name"/>
-				</br>
-				<input type="" class="option" name="tagid" value="<%= id %>" placeholder="<%= id %>"/>
+      <img class="logo" src="/svgs/position.svg" alt="-Stay connected-">
+      <form id="anchor" class="form" action="/configuration" method="post" onsubmit="submitForm();">
+				<h1>Anchor</h1>
+  			<input type="" class="option" name="anchorid" value="" placeholder="UID"/>
+        <br>
+        <input type="" class="option" name="long" value="" placeholder="Longtitude"/>
+        <br>
+        <input type="" class="option" name="lat" value="" placeholder="Latitude"/>
 				<p></p>
 				</br>
 				<input class="submit" type="submit">
 			</form>
-			<img class="logo" src="/svgs/position.svg" alt="-Stay connected-">
 		</div>
 	</div>
 
 
 	<script type="text/javascript">
-		var form = document.getElementById('login')
+		var form = document.getElementById('anchor')
 		function submitForm() {
 			form.submit()
 		}
