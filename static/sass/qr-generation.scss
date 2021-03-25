@@ -19,24 +19,82 @@
   h1 {
     margin: 0 auto;;
   }
+ 
+	.code {
+		display: block;
+		margin: 15px auto;
+		outline: none;
+		border: none;
+		background: transparent;
+	}
+	
+	.code:hover {
+		opacity: 0.7;
+	}
+
+	//REDO
+	#printButton {
+		display: none;
+		margin:  10px auto;
+	}
+	
+	.choice {
+		padding: 10px;;
+		height: 6em;
+		width: 8em;
+		margin: 10px;
+		font-weight: bold;
+
+
+		img {
+			margin: 10px;
+			height: 3em;
+			width: 3em;
+		}
+	}
+
+	.choice:focus {
+		border: 2px solid $independence;
+		opacity: 0.7;
+		background-color: $light-thistle;
+		transition: .35s ease-in-out;
+	}
 
 }
 
-.code {
-  display: block;
-  margin: 15px auto;
-  outline: none;
-  border: none;
-  background: transparent;
+//filepond basic style - restyling
+.filepond--drop-label {
+	// background-color: $thistle;
+	color: $independence;
 }
 
-.code:hover {
-  opacity: 0.7;
+.filepond--label-action {
+	color: $text;
+	font-weight: bold;
 }
 
+// .file-inputarea {	
+// 	// color: $text;
+// }
 
-//REDO
-#printButton {
-  display: none;
-  margin:  10px auto;
+.filepond--panel-root {
+	// background-color: $thistle;
+	// border-radius: 0.5em;
+	background-color: $light-thistle;
+  border: 2px solid $independence;
+}
+
+.filepond--drip-blob  {
+	background-color: $independence;
+}
+
+.filepond--item-panel {
+	background-color: $light-thistle;
+	// border: 1px solid $independence;
+	// box-shadow: ;
+	color: $text;
+}
+
+.filepond--file {
+	color: $text;
 }

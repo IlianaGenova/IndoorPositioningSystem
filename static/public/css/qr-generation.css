@@ -14,17 +14,50 @@
   align-content: flex-end; }
   .body h1 {
     margin: 0 auto; }
+  .body .code {
+    display: block;
+    margin: 15px auto;
+    outline: none;
+    border: none;
+    background: transparent; }
+  .body .code:hover {
+    opacity: 0.7; }
+  .body #printButton {
+    display: none;
+    margin: 10px auto; }
+  .body .choice {
+    padding: 10px;
+    height: 6em;
+    width: 8em;
+    margin: 10px;
+    font-weight: bold; }
+    .body .choice img {
+      margin: 10px;
+      height: 3em;
+      width: 3em; }
+  .body .choice:focus {
+    border: 2px solid #564c67;
+    opacity: 0.7;
+    background-color: #d3c6d0;
+    transition: .35s ease-in-out; }
 
-.code {
-  display: block;
-  margin: 15px auto;
-  outline: none;
-  border: none;
-  background: transparent; }
+.filepond--drop-label {
+  color: #564c67; }
 
-.code:hover {
-  opacity: 0.7; }
+.filepond--label-action {
+  color: #363248;
+  font-weight: bold; }
 
-#printButton {
-  display: none;
-  margin: 10px auto; }
+.filepond--panel-root {
+  background-color: #d3c6d0;
+  border: 2px solid #564c67; }
+
+.filepond--drip-blob {
+  background-color: #564c67; }
+
+.filepond--item-panel {
+  background-color: #d3c6d0;
+  color: #363248; }
+
+.filepond--file {
+  color: #363248; }

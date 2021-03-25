@@ -112,8 +112,8 @@ app.post('/range', (req, res, next) => {
 
 
 app.get('/ranging', (req, res, next) => {
-	let lon = 3
-	let lat = 5
+	let lon = req.body.lon
+	let lat = req.body.lat
 
 	var data = {
 		tagID: '0x668FF555353292929229',
@@ -143,7 +143,7 @@ app.get('/ranging', (req, res, next) => {
 		else {
 			// console.log(conn.position.coordinates[3][1])
 			console.log(conn.position.type + conn.anchorID.type)
-			var coords = [5, 6]
+			var coords = [lon, lat]
 			// {
 			// 	lon: 7,
 			// 	lat: 12
@@ -167,41 +167,41 @@ app.get('/ranging', (req, res, next) => {
 })
 
 app.get('/configuration', (req, res, next) => { 
-	res.render("configuration-panel")
+	res.render("configuration-panel" , { id : req.query.taguid })
 })
 
 app.post('/configuration', (req, res, next) => {
 	// console.log(req.body)
-	let lon = req.body.long;
-	let lat = req.body.lat;
-	let id = req.body.anchorid;
+	// let lon = req.body.long;
+	// let lat = req.body.lat;
+	let id = req.query.anchorid;
 
-	var data = {
-		anchorID: id,
-		position: {  
-			type: 'Point', 
-			coordinates: [lon, lat]
-		}
-	}
+	// var data = {
+	// 	anchorID: id,
+	// 	position: {  
+	// 		type: 'Point', 
+	// 		coordinates: [lon, lat]
+	// 	}
+	// }
 	
-	Anchor.findOne({"anchorID" : id}, function (err, anchor) {
-		if(err) {
-			console.log(err);
-		} 
-		else if(anchor == null) {
-			Anchor.create(data, function (error, anchor) {
-				if (error) {
-					return next(error);
-				} else {
-					return res.redirect('/');
-				}
-			})
-		}
-		else {
-			console.log("There is already an anchor with the following UID: " + id);
-			return res.redirect('/configuration');
-		}
-	});
+	// Anchor.findOne({"anchorID" : id}, function (err, anchor) {
+	// 	if(err) {
+	// 		console.log(err);
+	// 	} 
+	// 	else if(anchor == null) {
+	// 		Anchor.create(data, function (error, anchor) {
+	// 			if (error) {
+	// 				return next(error);
+	// 			} else {
+	// 				return res.redirect('/');
+	// 			}
+	// 		})
+	// 	}
+	// 	else {
+	// 		console.log("There is already an anchor with the following UID: " + id);
+	// 		return res.redirect('/configuration');
+	// 	}
+	// });
 })
 
 //QR code generation route

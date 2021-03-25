@@ -5,8 +5,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel='stylesheet' type='text/css' href='/public/css/main.css' />
-	<link rel='stylesheet' type='text/css' href='/public/css/index.css' />
 	<title>IPS</title>
+
+	<!-- filepond -->
+	<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+	<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+	<link rel='stylesheet' type='text/css' href='/public/css/qr-generation.css' />
+	<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+	<script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
+	<script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+	<script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
+	<script defer src="/fileupload.js"></script>
 </head>
 <body>
 	<div class="page">
@@ -14,11 +23,12 @@
       <img class="logo" src="/svgs/position.svg" alt="-Stay connected-">
       <form id="anchor" class="form" action="/configuration" method="post" onsubmit="submitForm();">
 				<h1>Anchor</h1>
-  			<input type="" class="option" name="anchorid" value="" placeholder="UID"/>
+  			<input type="" class="option" name="anchorid" value="<%= id %>" placeholder="<%= id %>"	disabled/>
         <br>
-        <input type="" class="option" name="long" value="" placeholder="Longtitude"/>
+        <!-- <input type="" class="option" name="lon" value="" placeholder="Longtitude"/>
         <br>
-        <input type="" class="option" name="lat" value="" placeholder="Latitude"/>
+        <input type="" class="option" name="lat" value="" placeholder="Latitude"/> -->
+				<input type="file" name="fileinput" class="file-inputarea filepond">
 				<p></p>
 				</br>
 				<input class="submit" type="submit">
@@ -30,7 +40,8 @@
 	<script type="text/javascript">
 		var form = document.getElementById('anchor')
 		function submitForm() {
-			form.submit()
+			event.preventDefault();
+			form.submit();
 		}
 	</script>
 

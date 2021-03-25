@@ -24,6 +24,15 @@
         <h1>Generate QR</h1>
 				<input type="input" id="UID" class="option" name="taguid" placeholder="Tag UID"/>
 				</br>
+				<button class="submit choice" type="submit" onclick="selectAsAnchor();">Anchor 
+					<br> 
+					<img class="nav-icon" src="/svgs/anchor.svg">
+				</button>
+				<button class="submit choice" type="submit" onclick="selectAsTag();">Tag 
+					<br> 
+					<img class="nav-icon" src="/svgs/tag.svg">
+				</button>
+				<br>
 				<input class="submit" type="submit" value="Generate">
 				<button class="code" id="qrcode" type="button" name="button" title='' onclick="" ></button>
 				<button class="submit print" id="printButton" type="button" name="button" title='print' onclick="printQR();" >Print</button>
@@ -35,14 +44,27 @@
 
 	<script type="text/javascript">
 		var isGenerated = false;
+		var uid = document.getElementById("UID");
+		var address = "http://localhost:8080/";
 		// const socket = io('localhost:3000');
 		// var form = document.getElementById("myForm");
 		// function handleForm(event) { event.preventDefault(); } 
 		// form.addEventListener('submit', handleForm);
 
-		function generateQR() {
-			var uid = document.getElementById("UID");
+		function selectAsAnchor() {
+			event.preventDefault();
+			var address = "http://localhost:8080/configuration?taguid=" + uid.value;
+		}
+
+		function selectAsTag() {
+			event.preventDefault();
 			var address = "http://localhost:8080/?taguid=" + uid.value;
+		}
+
+
+		function generateQR() {
+			// var uid = document.getElementById("UID");
+			// var address = "http://localhost:8080/configuration?taguid=" + uid.value;
 
 			if(isGenerated) {
 				alert("QR already generated")
