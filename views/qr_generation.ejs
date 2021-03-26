@@ -18,8 +18,13 @@
 	<div class="page">
 		<div class="body">
 			
-			<img class="logo" src="/svgs/phone_location.svg" alt="-Stay connected-">
-		
+			<div class="qr">
+				<img class="logo" id="image" src="/svgs/phone_location.svg" alt="-Stay connected-">
+				<p id="text">click the QR code to continue configuration right now </p>
+				<button class="code" id="qrcode" type="button" name="button" title='' onclick="" ></button>
+				<button class="submit print" id="printButton" type="button" name="button" title='print' onclick="printQR();" >Print</button>
+			</div>
+
 			<form id="generate-qr" class="form" onsubmit="generateQR(); return false" >
         <h1>Generate QR</h1>
 				<input type="input" id="UID" class="option" name="taguid" placeholder="Tag UID"/>
@@ -34,8 +39,6 @@
 				</button>
 				<br>
 				<input class="submit" type="submit" value="Generate">
-				<button class="code" id="qrcode" type="button" name="button" title='' onclick="" ></button>
-				<button class="submit print" id="printButton" type="button" name="button" title='print' onclick="printQR();" >Print</button>
 			</form>
 			
 		</div>
@@ -53,12 +56,12 @@
 
 		function selectAsAnchor() {
 			event.preventDefault();
-			var address = "http://localhost:8080/configuration?taguid=" + uid.value;
+			address = "http://localhost:8080/configuration?taguid=" + uid.value;
 		}
 
 		function selectAsTag() {
 			event.preventDefault();
-			var address = "http://localhost:8080/?taguid=" + uid.value;
+			address = "http://localhost:8080/?taguid=" + uid.value;
 		}
 
 
@@ -93,7 +96,10 @@
 				document.getElementById("qrcode").setAttribute('onclick', route)
 
 				//display a 'print' button 
-				var button = document.getElementById("printButton").style.display = "block"
+				var button = document.getElementById("printButton").style.display = "flex"
+
+				document.getElementById("image").style.display = "none"
+				document.getElementById("text").style.display = "block"
 			}
 
 			console.log(address)
@@ -115,7 +121,8 @@
 
 		function checkUID(uid) {
 			//TODO: check len 26
-			//if(uid.length != 26) return false
+			console.log(uid.length)
+			if(uid.length < 25) return false
 
 			//checks if the value is hex 
 			if(uid[0] != '0' || uid[1] != 'x') return false

@@ -29,19 +29,34 @@
 	}
 	
 	.code:hover {
-		opacity: 0.7;
+		opacity: 0.65;
+		transition: .2s ease-in-out;
 	}
 
 	//REDO
 	#printButton {
 		display: none;
+		margin:  10px auto 75px auto;
+		padding: 5px 25px;
+
+		// height: 2em;
+		// width: 4em;
+	}
+
+	#text {
+		font-size: large;
+		max-width: 256px;
+		width: 100%;
+		
+		display: none;
 		margin:  10px auto;
 	}
 	
 	.choice {
-		padding: 10px;;
+		padding: 10px;
+
 		height: 6em;
-		width: 8em;
+		width: 7em;
 		margin: 10px;
 		font-weight: bold;
 
@@ -58,6 +73,40 @@
 		opacity: 0.7;
 		background-color: $light-thistle;
 		transition: .35s ease-in-out;
+	}
+
+	.qr {
+		margin: 0px;	
+	
+		max-width: 450px;
+		max-height: 350px;
+	
+		width: 80%;
+		height: auto;
+	}
+
+	.submit {
+		margin: 10px;
+		padding: 5px;
+
+		border: 2px solid $text;
+		border-radius: 10px;
+		outline: none;
+
+		font-family: 'Roboto', sans-serif;
+		font-size: 1.5em;
+
+		color: $text;
+		background-color: white;
+
+		-moz-box-shadow:    inset 0 0 10px rgba(0, 0, 0, 0.1);
+		-webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+		box-shadow:         inset 0 0 10px rgba(0, 0, 0, 0.1);
+	}
+
+	.submit:hover {
+		opacity: 0.6;
+		transition: .15s ease-in-out;
 	}
 
 }

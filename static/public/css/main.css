@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap");
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 980px) {
+  .body {
+    padding-top: 100px; }
   .form {
     text-align: center; } }
 
@@ -16,7 +18,7 @@ h1 {
   margin-bottom: 40px; }
 
 .logo {
-  max-width: 450px;
+  max-width: 530px;
   max-height: 350px;
   width: 80%;
   height: auto;

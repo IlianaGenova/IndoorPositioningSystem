@@ -1,10 +1,14 @@
 @import "colors";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
 
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 980px) {
+	.body {
+		padding-top: 100px;
+	}
 	.form {
 		text-align: center;
 	}
+	
 }
 
 body {
@@ -22,7 +26,7 @@ h1 {
 }
 
 .logo {
-	max-width: 450px;
+	max-width: 530px;
 	max-height: 350px;
 
 	width: 80%;
@@ -66,6 +70,9 @@ h1 {
 	.option {
 		height: 2em;
 		width: 15em;
+
+		// width: 100%;
+		// max-height: 100%;
 		margin: 10px;
 	}
 
