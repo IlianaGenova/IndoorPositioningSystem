@@ -5,32 +5,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel='stylesheet' type='text/css' href='/public/css/main.css' />
-	<link rel='stylesheet' type='text/css' href='/public/css/index.css' />
+	<link rel='stylesheet' type='text/css' href='/public/css/tag.css' />
 	<title>IPS</title>
 </head>
 <body>
 	<div class="page">
 		<div class="body">
 			<form id="form" class="form" action="/admin/tag" method="post" onsubmit="submitForm();">
-        <div class="headings">
-          <h1>IPSystem</h1>
-          <h2>Indoor positioning done easy.</h2>
-        </div>
-				
-        <div class="buttons">
-          <h2>Getting started - log as:</h2>
-          <button class="option submit choice"type="submit" >User 
-            <br> 
-            <img class="nav-icon" src="/svgs/anchor.svg">
-          </button>
-          <button class="option submit choice" type="submit">Admin 
-            <br> 
-            <img class="nav-icon" src="/svgs/anchor.svg">
-          </button>
-        </div>
-				<input class="submit submit-btn" type="submit">
+				<h1>Tag</h1>
+				<input type="input" class="option" name="name" placeholder="Name"/>
+				</br>
+				<input type="" class="option" name="tagid" value="<%= id %>" placeholder="<%= id %>" readonly="readonly"/>
+				<p></p>
+				</br>
+				<input class="submit" type="submit">
 			</form>
-			<img class="logo" src="/svgs/search_location.svg" alt="-Stay connected-">
+			<img class="logo" src="/svgs/position.svg" alt="-Stay connected-">
 		</div>
 	</div>
 

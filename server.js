@@ -75,38 +75,51 @@ app.use(bodyParser.json());
 
 //main route
 app.get('/', (req, res) => {
-	// UUID - STM32F103xx documentation, стр. 1075, 30.2, device electronic signature
-	// console.log(req.query.taguid);
-	res.render("index", { id : req.query.taguid });
+	res.render("index");
 });
 
+app.get('/admin/tag', (req, res) => {
+	// UUID - STM32F103xx documentation, стр. 1075, 30.2, device electronic signature
+	// console.log(req.query.taguid);
+	res.render("tag", { id : req.query.taguid });
+});
 
-app.post('/range', (req, res, next) => {
-	// console.log(req.body)
+app.post('/admin/tag', (req, res) => {
+	console.log(req.body)
+
 	if(req.body.tagid && req.body.name) {
 		var data = {
 			name: req.body.name,
 			tagID: req.body.tagid
 		}
 
-		Tag.findOne(({"tagID": tagID}), function (err, existing_tag) {
+		Tag.findOne(({"tagID": data.tagID}), function (err, existing_tag) {
 			if(err) {
 				console.log(err);
 			}
 			if(existing_tag == null) {
+				console.log('Creating tag...')
 				Tag.create(data, function (error, tag) {
 					if (error) {
-							return next(error);
+						return next(error);
 					} else {
-							return res.redirect('/ranging');
+						console.log("Created board - TAG - UID: " + req.body.tagid)
+						return res.redirect('/admin');
 					}
 				}
 			)}
 			else {
+				console.log("There is an exiting tag with the following UID: " + req.body.tagid)
 				//TODO alert user there is such tagid 
 			}
 		})
 	}
+})
+
+
+app.get('/admin', (req, res, next) => {
+	// console.log("hey")
+	return 200;
 })
 
 
@@ -166,11 +179,11 @@ app.get('/ranging', (req, res, next) => {
 	}))
 })
 
-app.get('/configuration', (req, res, next) => { 
+app.get('/admin/anchor', (req, res, next) => { 
 	res.render("configuration-panel" , { id : req.query.taguid })
 })
 
-app.post('/configuration', (req, res, next) => {
+app.post('/admin/anchor', (req, res, next) => {
 	// console.log(req.body)
 	// let lon = req.body.long;
 	// let lat = req.body.lat;

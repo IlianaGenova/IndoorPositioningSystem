@@ -57,3 +57,22 @@ h1 {
     margin-top: 20px; }
   .form ::placeholder, .form :-ms-input-placeholder, .form ::-ms-input-placeholder {
     color: #363248; }
+  .form .choice {
+    padding: 10px;
+    height: 6em;
+    width: 7em;
+    margin: 10px;
+    font-weight: bold; }
+    .form .choice img {
+      margin: 10px;
+      height: 3em;
+      width: 3em; }
+  .form .choice:focus {
+    border: 2px solid #564c67;
+    opacity: 0.7;
+    background-color: #d3c6d0;
+    transition: .35s ease-in-out; }
+  .form .submit:hover {
+    opacity: 0.8;
+    background-color: #d3c6d0;
+    transition: .2s ease-in-out; }

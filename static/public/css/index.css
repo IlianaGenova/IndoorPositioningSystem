@@ -11,3 +11,17 @@
   justify-content: space-around;
   align-items: center;
   align-content: flex-end; }
+  .body .headings {
+    margin: 80px auto;
+    margin-left: 10px; }
+    .body .headings * {
+      margin: 0px; }
+  .body .buttons {
+    margin: 20px auto; }
+    .body .buttons h2 {
+      margin: 5px 5px;
+      margin-left: 10px; }
+    .body .buttons button {
+      color: #564c67; }
+  .body .submit-btn {
+    font-weight: bold; }

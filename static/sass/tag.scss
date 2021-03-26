@@ -15,30 +15,5 @@
 	justify-content: space-around;
 	align-items: center;
 	align-content: flex-end;
-  
-  .headings {
-    * {
-      margin: 0px;
-    }
-
-    margin: 80px auto;
-    margin-left: 10px;
-
-  }
-
-  .buttons {
-    h2 {
-      margin: 5px 5px;
-      margin-left: 10px;
-    }
-
-    margin: 20px auto;
-    button {
-      color: $independence;
-    }
-  }
-
-  .submit-btn {
-    font-weight: bold;
-  }
+	
 }
