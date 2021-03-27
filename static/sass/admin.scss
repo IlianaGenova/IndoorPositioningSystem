@@ -22,26 +22,30 @@
       margin: 0px;
     }
 
-    margin: 80px auto;
+    margin: 60px auto;
     margin-left: 10px;
     margin-top: 0px;
 
   }
 
   .buttons {
-    h2 {
-      margin: 5px 5px;
-      margin-left: 10px;
-    }
-
-    margin: 20px auto;
+    margin: 10px auto;
 
     button {
       color: $independence;
-    }
-  }
+      width: 15em;
+      height: 2em;
+      text-align: left;
+      // font-weight: bold
+      display: inline-flex;
+      align-items: center;
+      margin: 8px auto;
 
-  .submit-btn {
-    font-weight: bold;
+      img {
+        max-height: 32px;
+        max-width: 32px;
+        margin: 10px;
+      }
+    }
   }
 }

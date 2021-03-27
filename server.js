@@ -118,8 +118,7 @@ app.post('/admin/tag', (req, res) => {
 
 
 app.get('/admin', (req, res, next) => {
-	// console.log("hey")
-	return 200;
+	 res.render("admin", { name: "Jamie"});
 })
 
 

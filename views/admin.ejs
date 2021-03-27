@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel='stylesheet' type='text/css' href='/public/css/main.css' />
+	<link rel='stylesheet' type='text/css' href='/public/css/admin.css' />
+	<title>IPS</title>
+</head>
+<body>
+	<div class="page">
+		<div class="body">
+			<form id="form" class="form" action="/admin/tag" method="post" onsubmit="submitForm();">
+        <div class="headings">
+          <h1>Hi, <%= name %>!</h1>
+          <h2>Welcome to the admin panel.</h2>
+        </div>
+				
+        <div class="buttons">
+          <button class="option submit" type="submit">
+            <img class="nav-icon" src="/svgs/add.svg"> Add a board
+          </button>
+          <br>
+          <button class="option submit" type="submit">
+            <img class="nav-icon" src="/svgs/add.svg"> Add an admin
+          </button>
+          <br>
+          <button class="option submit" type="submit">
+            <img class="nav-icon" src="/svgs/administration.svg"> Manage maps
+          </button>
+          <br>
+          <button class="option submit" type="submit">
+            <img class="nav-icon" src="/svgs/administration.svg"> Manage tags
+          </button>
+          <br>
+          <button class="option submit" type="submit">
+            <img class="nav-icon" src="/svgs/administration.svg"> Manage anchors
+          </button>
+        </div>
+				
+			</form>
+			<img class="logo" src="/svgs/phone.svg" alt="-Stay connected-">
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		var form = document.getElementById("form")
+		function submitForm() {
+			event.preventDefault()
+			form.submit()
+		}
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</body>
+</html>
