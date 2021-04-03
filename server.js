@@ -15,9 +15,12 @@ client.connect(err => {
 });
 
 //DB schemas
-var Tag = require('./static/models/tag.js');
-var Coords = require('./static/models/coordinates.js');
-var Anchor = require('./static/models/anchor.js');
+let Coords = require('./static/models/coordinates.js');
+let Anchor = require('./static/models/anchor.js');
+let Admin = require('./static/models/admin.js');
+let User = require('./static/models/user.js');
+let Map = require('./static/models/map.js');
+let Tag = require('./static/models/tag.js');
 
 //connect to MongoDB
 mongoose.connect(uri, {
@@ -72,6 +75,7 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 app.use(bodyParser.json());
+
 
 //main route
 app.get('/', (req, res) => {
@@ -179,7 +183,7 @@ app.get('/ranging', (req, res, next) => {
 })
 
 app.get('/admin/anchor', (req, res, next) => { 
-	res.render("configuration-panel" , { id : req.query.taguid })
+	res.render("anchor" , { id : req.query.taguid })
 })
 
 app.post('/admin/anchor', (req, res, next) => {

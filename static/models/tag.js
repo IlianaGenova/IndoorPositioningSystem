@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-// var bcrypt = require('bcrypt');
 
 var TagSchema = new mongoose.Schema({
   tagID: {

@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-// var bcrypt = require('bcrypt');
 
 var AnchorSchema = new mongoose.Schema({
   anchorID: {

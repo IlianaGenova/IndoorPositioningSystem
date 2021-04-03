@@ -11,30 +11,30 @@
 <body>
 	<div class="page">
 		<div class="body">
-			<form id="form" class="form" action="/admin/tag" method="post" onsubmit="submitForm();">
+			<form id="form" class="form" action="" method="get" onsubmit="submitForm();">
         <div class="headings">
           <h1>Hi, <%= name %>!</h1>
           <h2>Welcome to the admin panel.</h2>
         </div>
 				
         <div class="buttons">
-          <button class="option submit" type="submit">
+          <button class="option submit" type="submit" onclick="addBoard();">
             <img class="nav-icon" src="/svgs/add.svg"> Add a board
           </button>
           <br>
-          <button class="option submit" type="submit">
+          <button class="option submit" type="submit" onclick="addAdmin();">
             <img class="nav-icon" src="/svgs/add.svg"> Add an admin
           </button>
           <br>
-          <button class="option submit" type="submit">
+          <button class="option submit" type="submit" onclick="manageMaps();">
             <img class="nav-icon" src="/svgs/administration.svg"> Manage maps
           </button>
           <br>
-          <button class="option submit" type="submit">
+          <button class="option submit" type="submit" onclick="manageTags();">
             <img class="nav-icon" src="/svgs/administration.svg"> Manage tags
           </button>
           <br>
-          <button class="option submit" type="submit">
+          <button class="option submit" type="submit" onclick="manageAnchors();">
             <img class="nav-icon" src="/svgs/administration.svg"> Manage anchors
           </button>
         </div>
@@ -47,10 +47,19 @@
 
 	<script type="text/javascript">
 		var form = document.getElementById("form")
+
 		function submitForm() {
 			event.preventDefault()
 			form.submit()
 		}
+
+    function addBoard() {
+      form.action = "/generate_QR"
+    }
+
+    function addAdmin() {
+
+    }
 	</script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>

@@ -11,7 +11,7 @@
 <body>
 	<div class="page">
 		<div class="body">
-			<form id="form" class="form" action="/admin/tag" method="post" onsubmit="submitForm();">
+			<form id="form" class="form" action="" method="post" onsubmit="submitForm();">
         <div class="headings">
           <h1>IPSystem</h1>
           <h2>Indoor positioning done easy.</h2>
@@ -19,16 +19,16 @@
 				
         <div class="buttons">
           <h2>Getting started - log as:</h2>
-          <button class="option submit choice"type="submit" >User 
+          <button class="option submit choice" type="submit" onclick="setUser();">User 
             <br> 
             <img class="nav-icon" src="/svgs/user1.svg">
           </button>
-          <button class="option submit choice" type="submit">Admin 
+          <button class="option submit choice" type="submit" onclick="setAdmin();">Admin 
             <br> 
             <img class="nav-icon" src="/svgs/admin.svg">
           </button>
         </div>
-				<input class="submit submit-btn" type="submit">
+				<!-- <input class="submit submit-btn" type="submit"> -->
 			</form>
 			<img class="logo" src="/svgs/search_location.svg" alt="-Stay connected-">
 		</div>
@@ -37,10 +37,21 @@
 
 	<script type="text/javascript">
 		var form = document.getElementById("form")
+		
 		function submitForm() {
 			event.preventDefault()
 			form.submit()
 		}
+
+		function setUser () {
+			form.action = "/user/auth"
+		}
+
+		function setAdmin () {
+			form.action = "/admin/auth"
+		}
+
+
 	</script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
