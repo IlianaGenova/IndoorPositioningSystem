@@ -1,6 +1,6 @@
 .body {
   margin: 0;
-  width: 100%;
+  width: 95%;
   position: absolute;
   display: flex;
   flex-flow: row wrap;
@@ -46,7 +46,8 @@
       width: 18em;
       height: 14em; }
       .body .list .entry .main {
-        color: #585a9d; }
+        color: #585a9d;
+        font-size: 1.35em; }
       .body .list .entry .title, .body .list .entry .contacts {
         margin: 10px; }
         .body .list .entry .title *, .body .list .entry .contacts * {
@@ -74,16 +75,21 @@
       opacity: 0.8;
       box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12); }
   .body .form {
-    text-align: center; }
+    margin: 0;
+    text-align: center;
+    align-self: flex-start; }
     .body .form .form-heading {
-      margin: 0 auto;
+      margin: 60px auto 0px auto;
       height: 10%; }
       .body .form .form-heading .title {
-        font-size: 3em;
+        font-size: 4em;
         margin: 0; }
       .body .form .form-heading .subtitle {
-        font-size: 1.5em;
+        font-size: 2em;
         margin-top: 10px;
-        margin-bottom: 20px; }
+        margin-bottom: 80px; }
       .body .form .form-heading * {
         font-weight: normal; }
+  .body .logo {
+    align-self: flex-start;
+    margin-top: 200px; }

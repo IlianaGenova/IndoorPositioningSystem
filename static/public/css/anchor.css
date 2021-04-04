@@ -1,18 +1,34 @@
+@media screen and (max-width: 1230px) {
+  body {
+    text-align: center; }
+  .body {
+    padding: 0px;
+    margin-top: 0px; }
+    .body #interactive-0 {
+      margin: 0px; }
+  #anchor {
+    text-align: center;
+    margin: 0px; } }
+
 .body {
   margin: 0;
-  width: 100%;
+  margin-top: 100px;
+  width: 95%;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  text-align: right;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  align-content: flex-end; }
+  justify-content: center;
+  align-items: center; }
+  .body .title {
+    margin-bottom: 20px; }
+  .body .interactive {
+    margin-top: 30px;
+    margin-right: 40px; }
   .body .coords {
     height: 2em;
     max-width: 6.65em;
     width: 100%;
     margin-top: 5px; }
+  .body .form {
+    margin: 30px 0px 0px 50px; }

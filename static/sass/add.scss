@@ -2,7 +2,7 @@
 
 .body {
 	margin: 0;
-	width: 100%;
+	width: 95%;
 	position: absolute;
 	display: flex;
 	flex-flow: row wrap;
@@ -71,6 +71,7 @@
 
       .main {
         color: $liberty;
+        font-size: 1.35em;
       }
 
       .title, .contacts {
@@ -122,22 +123,24 @@
   }
 
   .form {
+    margin: 0;
     text-align: center;
+    align-self: flex-start;
 
     .form-heading {
-      margin: 0 auto;
+      margin: 60px auto 0px auto;
       height: 10%;
       
       .title {
-        font-size: 3em;
+        font-size: 4em;
         margin: 0;
         
       }
 
       .subtitle {
-        font-size: 1.5em;
+        font-size: 2em;
         margin-top: 10px;
-        margin-bottom: 20px;;
+        margin-bottom: 80px;
       }
 
       * {
@@ -147,7 +150,8 @@
     }
   }
 
-  // .logo {
-  //   display: block;
-  // }
+  .logo {
+    align-self: flex-start;
+    margin-top: 200px;
+  }
 }

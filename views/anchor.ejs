@@ -11,7 +11,6 @@
 	<!-- filepond -->
 	<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
 	<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
-	<link rel='stylesheet' type='text/css' href='/public/css/qr-generation.css' />
 	<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
 	<script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
 	<script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
@@ -27,16 +26,16 @@
 		<div class="body">
       <!-- <img class="logo hide" src="/svgs/position.svg" alt="-Stay connected-"> -->
 			<!-- <canvas id="canvas" class="canvas visualise"></canvas> -->
-			<div id="my-interactive"></div>
+			<div id="my-interactive" class="interactive"></div>
 			<div id="myText"></div>
       <form id="anchor" class="form" action="/admin/anchor" method="post" onsubmit="submitForm();">
-				<h1>Anchor</h1>
+				<h1 class="title">Anchor</h1>
 				<br>
   			<input type="" class="option" name="anchorid" value="<%= id %>" placeholder="<%= id %>"	 readonly="readonly"/>
         <br>
         <input type="" class="option visualise coords" name="lon" id="x" value="" placeholder="Longtitude" readonly="readonly"/>
         <input type="" class="option visualise coords" name="lat" id="y" value="" placeholder="Latitude" readonly="readonly"/>
-				<br>
+				<!-- <br> -->
 				<!-- <button type="button" class="option generate" onclick="drawCoordinateSystem()">Set coordinates</button> -->
 				
 				<!-- <input type="file" name="fileinput" class="file-inputarea filepond">

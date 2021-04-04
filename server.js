@@ -137,7 +137,7 @@ app.get('/admin/add', (req, res) => {
 
 app.post('/admin/add', (req, res) => { 
 	// TODO main admin add main admins
-
+	//TODO check if values are ok
 	let data = {
 		name: req.body.name, 
 		surname: req.body.surname,
