@@ -39,7 +39,7 @@ function main(id) {
     let yAxisLabel = interactive.text(yAxis.x1, yAxis.y1 - 16, 'y');
     yAxisLabel.setAttribute('text-anchor', 'middle');
     let xPosition = interactive.line(0, 0, 0, 0);
-    xPosition.style.stroke = 'cornflowerblue';
+    xPosition.style.stroke = 'cornflowerblue'; //#585a9d
     xPosition.addDependency(point);
     xPosition.update = function () {
         this.x1 = point.x;
@@ -47,7 +47,7 @@ function main(id) {
         this.y2 = point.y;
 
         document.getElementById("x").value = point.x;
-      document.getElementById("y").value = point.y;
+        document.getElementById("y").value = point.y;
     };
     let yPosition = interactive.line(0, 0, 0, 0);
     yPosition.style.stroke = 'cornflowerblue';

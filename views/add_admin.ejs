@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel='stylesheet' type='text/css' href='/public/css/main.css' />
+	<link rel='stylesheet' type='text/css' href='/public/css/add.css' />
+	<title>IPS</title>
+</head>
+<body>
+		<main class="body">
+			<div class="main">
+
+        <div class="headings">
+          <div class="headings-picture">
+            <img class="nav-icon" src="/svgs/admin.svg">
+          </div>
+          <div class="headings-text">
+            <h1>Add admin</h1>
+            <h2>List of all current admins</h2>
+          </div>
+        </div>
+        <!-- TODO last seen on -->
+        
+        <div class="list">
+          <% for(let i = 0; i < admins.length; i++) { %>
+            <button class="entry">
+              <div class="title">
+                <h2><%= admins[i].name %> <%= admins[i].surname %></h2>
+                <%if(admins[i].main_admin) {%>
+                  <h4 class="main">Main admin</h4>
+                <% } %>
+              </div>
+              
+              <div class="contacts">
+                <p>Contacts: </p>
+                <p>E-mail: <%= admins[i].email %></p>
+                <p>Phone number: <%= admins[i].phone %></p>
+              </div>
+
+            </button>
+          <% } %>
+          <button class="entry" onclick="generateForm();">
+            <img class="nav-icon" src="/svgs/add.svg">  
+          </button>
+        </div>
+        <!-- <input class="submit submit-btn" type="submit"> -->
+      </div>
+
+			<img id="img" style="display:block" class="logo toggle" src="/svgs/search_location.svg" alt="-Stay connected-">
+      <form id="form" style="display:none" class="form toggle" action="/admin/add" method="post" onsubmit="submitForm();">
+        
+        <div class="form-heading">
+          <h2 class="title">New admin</h2>
+          <h3 class="subtitle">Welcome aboard!</h3>
+        </div>
+    
+        <input type="input" class="option" name="name" placeholder="Name"/>
+        </br>
+        <input type="input" class="option" name="surname" placeholder="Surname"/>
+        </br>
+        <input type="input" class="option" name="email" placeholder="E-mail"/>
+        </br>
+        <input type="input" class="option" name="phone" placeholder="Phone"/>
+        </br>
+        <!-- TODO incorporate pwd -->
+        <input class="submit" type="submit">
+      </form>
+		</main>
+	</div>
+
+
+	<script type="text/javascript">
+		var form = document.getElementById("form")
+		var pic = document.getElementById("img")
+
+		function generateForm() {
+			event.preventDefault();
+      toggleVisibility(pic);
+      toggleVisibility(form);
+		}
+
+    function toggleVisibility(elem) {
+      console.log(elem)
+      
+      if(elem.style.display == "block") {
+        elem.style.display = "none"; 
+      }
+      else if(elem.style.display == "none") {
+        elem.style.display = "block";
+      }
+      
+    }
+
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</body>
+</html>

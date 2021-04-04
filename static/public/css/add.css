@@ -1,0 +1,89 @@
+.body {
+  margin: 0;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: flex-end; }
+  .body .headings {
+    margin: 60px auto;
+    margin-left: 10px;
+    margin-top: 0px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-flow: row wrap; }
+    .body .headings * {
+      margin: 0px;
+      font-weight: normal; }
+    .body .headings h2 {
+      margin-left: 10px; }
+    .body .headings .headings-picture {
+      width: 100px;
+      height: 100px;
+      margin-right: 20px; }
+    .body .headings .heading-text * {
+      margin: 0px; }
+  .body .list {
+    max-width: 650px;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap; }
+    .body .list .entry {
+      display: flex;
+      flex-flow: column nowrap;
+      color: #363248;
+      font-size: 1em;
+      background-color: #d3c6d0;
+      border-radius: 5px;
+      border: 1px solid #564c67;
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      margin: 10px;
+      padding: 10px;
+      width: 18em;
+      height: 14em; }
+      .body .list .entry .main {
+        color: #585a9d; }
+      .body .list .entry .title, .body .list .entry .contacts {
+        margin: 10px; }
+        .body .list .entry .title *, .body .list .entry .contacts * {
+          font-weight: normal;
+          margin: 0px; }
+      .body .list .entry .title {
+        margin-bottom: 30px;
+        align-self: flex-start;
+        height: 40%; }
+      .body .list .entry .contacts :first-child {
+        margin-bottom: 10px;
+        font-size: 1.3em; }
+      .body .list .entry * {
+        text-align: left; }
+      .body .list .entry .selected {
+        background-color: #dcbcd4;
+        opacity: 0.8; }
+      .body .list .entry .nav-icon {
+        max-width: 3em;
+        max-height: 3em;
+        width: 100%;
+        height: 100%;
+        margin: auto; }
+    .body .list .entry:hover {
+      opacity: 0.8;
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12); }
+  .body .form {
+    text-align: center; }
+    .body .form .form-heading {
+      margin: 0 auto;
+      height: 10%; }
+      .body .form .form-heading .title {
+        font-size: 3em;
+        margin: 0; }
+      .body .form .form-heading .subtitle {
+        font-size: 1.5em;
+        margin-top: 10px;
+        margin-bottom: 20px; }
+      .body .form .form-heading * {
+        font-weight: normal; }

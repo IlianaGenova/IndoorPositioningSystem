@@ -76,7 +76,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-
 //main route
 app.get('/', (req, res) => {
 	res.render("index");
@@ -125,13 +124,43 @@ app.get('/admin', (req, res, next) => {
 	 res.render("admin", { name: "Jamie"});
 })
 
+app.get('/admin/add', (req, res) => {
+	Admin.find().exec(function (error, admins) {
+		if(error){
+			console.log(error);
+		}
+		else{
+			res.render("add_admin", {admins: admins});
+		}
+	});
+});
 
+app.post('/admin/add', (req, res) => { 
+	// TODO main admin add main admins
+
+	let data = {
+		name: req.body.name, 
+		surname: req.body.surname,
+		email: req.body.email,
+		phone: req.body.phone,
+		main_admin: false
+	}
+
+	Admin.create(data, function (error, admin) {
+		if (error) {
+			return next(error);
+		} else {
+			return res.redirect('/admin/add');
+		}
+	})
+
+});
 
 app.get('/ranging', (req, res, next) => {
 	let lon = req.body.lon
 	let lat = req.body.lat
 
-	var data = {
+	let data = {
 		tagID: '0x668FF555353292929229',
 		anchorID: '0x668FF555353667267241437',
 		position: {
@@ -188,42 +217,47 @@ app.get('/admin/anchor', (req, res, next) => {
 
 app.post('/admin/anchor', (req, res, next) => {
 	// console.log(req.body)
-	// let lon = req.body.long;
-	// let lat = req.body.lat;
-	let id = req.query.anchorid;
+	let lon = req.body.lon;
+	let lat = req.body.lat;
+	let id = req.body.anchorid;
 
-	// var data = {
-	// 	anchorID: id,
-	// 	position: {  
-	// 		type: 'Point', 
-	// 		coordinates: [lon, lat]
-	// 	}
-	// }
+	var data = {
+		anchorID: id,
+		position: {  
+			type: 'Point', 
+			coordinates: [lon, lat]
+		}
+	}
 	
-	// Anchor.findOne({"anchorID" : id}, function (err, anchor) {
-	// 	if(err) {
-	// 		console.log(err);
-	// 	} 
-	// 	else if(anchor == null) {
-	// 		Anchor.create(data, function (error, anchor) {
-	// 			if (error) {
-	// 				return next(error);
-	// 			} else {
-	// 				return res.redirect('/');
-	// 			}
-	// 		})
-	// 	}
-	// 	else {
-	// 		console.log("There is already an anchor with the following UID: " + id);
-	// 		return res.redirect('/configuration');
-	// 	}
-	// });
+	Anchor.findOne({"anchorID" : id}, function (err, anchor) {
+		if(err) {
+			console.log(err);
+		} 
+		//TODO check in tags too and inform user
+		else if(anchor == null) {
+			Anchor.create(data, function (error, anchor) {
+				if (error) {
+					return next(error);
+				} else {
+					return res.redirect('/admin');
+				}
+			})
+		}
+		else {
+			console.log("There is already an anchor with the following UID: " + id);
+			//TODO show it 
+			//TODO say if undefined/not on
+			return res.redirect('/admin'); //TODO
+		}
+	});
 })
 
 //QR code generation route
 app.get('/generate_QR', (req, res) => {
-	res.render("qr_generation")
+	res.render("qr_generation");
 });
+
+
 
 // io.on('generateQR', (address) => {
 //   console.log(text)

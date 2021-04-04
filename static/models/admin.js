@@ -4,15 +4,25 @@ var mongoose = require('mongoose');
 var AdminSchema = new mongoose.Schema({
   name: {
 	  type: String,
-	  unique: true,
 	  trim: true
   },
   surname: {
 	  type: String,
+	  trim: true
+  },
+	email: {
+	  type: String,
 	  unique: true,
 	  trim: true
   },
-  
+	phone: {
+	  type: String,
+	  unique: true,
+	  trim: true
+  },
+	main_admin: {
+		type: Boolean
+	}
 });
 
 AdminSchema.set('autoIndex', false);

@@ -29,21 +29,19 @@
 			<!-- <canvas id="canvas" class="canvas visualise"></canvas> -->
 			<div id="my-interactive"></div>
 			<div id="myText"></div>
-      <form id="anchor" class="form" action="/configuration" method="post" onsubmit="submitForm();">
+      <form id="anchor" class="form" action="/admin/anchor" method="post" onsubmit="submitForm();">
 				<h1>Anchor</h1>
+				<br>
   			<input type="" class="option" name="anchorid" value="<%= id %>" placeholder="<%= id %>"	 readonly="readonly"/>
         <br>
-				<button type="button" class="generate option" onclick="drawCoordinateSystem()">Set coordinates</button>
-				<!-- <script defer type="module" src="/drawCS.js"></script> -->
+        <input type="" class="option visualise coords" name="lon" id="x" value="" placeholder="Longtitude" readonly="readonly"/>
+        <input type="" class="option visualise coords" name="lat" id="y" value="" placeholder="Latitude" readonly="readonly"/>
 				<br>
-
-        <input type="" class="option visualise" name="lon" id="x" value="" placeholder="Longtitude" readonly="readonly"/>
-        <br>
-        <input type="" class="option visualise" name="lat" id="y" value="" placeholder="Latitude" readonly="readonly"/>
+				<!-- <button type="button" class="option generate" onclick="drawCoordinateSystem()">Set coordinates</button> -->
 				
 				<!-- <input type="file" name="fileinput" class="file-inputarea filepond">
 				<p></p>-->
-				</br> 
+				<br>
 				<input class="submit" type="submit">
 			</form>
 		</div>
