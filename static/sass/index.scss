@@ -1,14 +1,21 @@
 @import "colors";
 
+@media screen and (max-width: 1000px) {
+	.form {
+		text-align: left;
+	}
+	
+}
+
 .body {
 	margin: 0;
-  margin-top: 20px;
+  margin-top: 100px;
 	width: 100%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
+	// position: absolute;
+	// top: 50%;
+	// left: 50%;
+	// -ms-transform: translate(-50%, -50%);
+	// transform: translate(-50%, -50%);
 	// text-align: center;
 
 	display: flex;

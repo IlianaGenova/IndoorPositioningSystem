@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 
 var MapSchema = new mongoose.Schema({
+  date: {
+    type: Date,
+  },
   file: {
 	  type: Buffer
   },

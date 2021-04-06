@@ -156,6 +156,43 @@ app.post('/admin/add', (req, res) => {
 
 });
 
+app.get('/admin/maps', (req, res) => {
+	Map.find().exec(function (error, maps) {
+		if(error) {
+			console.log(error);
+		}
+		else {
+			console.log(maps.length)
+			res.render("maps", {maps: maps});
+		}
+	});
+})
+
+app.post('/admin/maps', (req, res) => {
+	if (req.body.fileinput != null && req.body.fileinput != "") {
+		var file = JSON.parse(req.body.fileinput);
+
+		if (file != null) { //mime type check omitted
+			var data = {
+				date: new Date(),
+				file: file.data,
+				fileType: file.type
+			}
+
+			console.log(data)
+
+			Map.create(data, function (error, map) {
+				if (error) {
+					return next(error);
+				} else {
+					return res.redirect('/');
+				}
+			})
+	
+		}
+	}
+})
+
 app.get('/ranging', (req, res, next) => {
 	let lon = req.body.lon
 	let lat = req.body.lat

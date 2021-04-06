@@ -58,24 +58,3 @@
     opacity: 0.75;
     transition: .15s ease-in-out;
     box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12); }
-
-.filepond--drop-label {
-  color: #564c67; }
-
-.filepond--label-action {
-  color: #363248;
-  font-weight: bold; }
-
-.filepond--panel-root {
-  background-color: #d3c6d0;
-  border: 2px solid #564c67; }
-
-.filepond--drip-blob {
-  background-color: #564c67; }
-
-.filepond--item-panel {
-  background-color: #d3c6d0;
-  color: #363248; }
-
-.filepond--file {
-  color: #363248; }

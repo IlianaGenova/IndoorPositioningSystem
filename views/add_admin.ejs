@@ -11,7 +11,6 @@
 <body>
 		<main class="body">
 			<div class="main">
-
         <div class="headings">
           <div class="headings-picture">
             <img class="nav-icon" src="/svgs/admin.svg">
@@ -24,13 +23,17 @@
         <!-- TODO last seen on -->
         
         <div class="list">
+
           <% for(let i = 0; i < admins.length; i++) { %>
-            <button class="entry">
+            <button class="entry" id="admin<%= i %>" value="<%= i %>" onclick="displayEntry();">
               <div class="title">
+
                 <h2><%= admins[i].name %> <%= admins[i].surname %></h2>
+               
                 <%if(admins[i].main_admin) {%>
                   <h4 class="main">Main admin</h4>
                 <% } %>
+
               </div>
               
               <div class="contacts">
@@ -41,56 +44,113 @@
 
             </button>
           <% } %>
+
           <button class="entry" onclick="generateForm();">
             <img class="nav-icon" src="/svgs/add.svg">  
           </button>
+
         </div>
+
         <!-- <input class="submit submit-btn" type="submit"> -->
       </div>
 
 			<img id="img" style="display:block" class="logo toggle" src="/svgs/webmap.svg" alt="-Stay connected-">
-      <form id="form" style="display:none" class="form toggle" action="/admin/add" method="post" onsubmit="submitForm();">
-        
+
+      <form id="info" style="display:none" class="form toggle" action="/admin/add" method="post" onsubmit="submitForm();">
         <div class="form-heading">
           <h2 class="title">New admin</h2>
           <h3 class="subtitle">Welcome aboard!</h3>
-        </div>
-    
-        <input type="input" class="option" name="name" placeholder="Name"/>
-        </br>
-        <input type="input" class="option" name="surname" placeholder="Surname"/>
-        </br>
-        <input type="input" class="option" name="email" placeholder="E-mail"/>
-        </br>
-        <input type="input" class="option" name="phone" placeholder="Phone"/>
-        </br>
+        </div> 
+
+				<input type="input" class="option info-option" name="name" placeholder="Name"/>
+				</br>
+        <input type="input" class="option info-option" name="surname" placeholder="Surname"/>
+				</br>
+        <input type="input" class="option info-option" name="email" placeholder="Email"/>
+				</br>
+        <input type="input" class="option info-option" name="phone" placeholder="Phone"/>
+				</br>
+				<!-- TODO if main admin - give rights to another -->
+        <!-- TODO delete profile -->
         <!-- TODO incorporate pwd -->
-        <input class="submit" type="submit">
-      </form>
+				<input class="submit old" style="display:block" type="submit" value="Change">
+        <input class="submit old" style="display:block" type="submit" value="Delete">
+				</br>
+				<input class="submit" type="submit">
+			</form>
 		</main>
 	</div>
 
 
 	<script type="text/javascript">
-		var form = document.getElementById("form")
-		var pic = document.getElementById("img")
+		// var form = document.getElementById("form")
+		let pic = document.getElementById("img")
+    let info = document.getElementById("info")
+    let oldAdminElements = document.getElementsByClassName('old');
+    let formFields = document.getElementsByClassName('info-option');
+
 
 		function generateForm() {
 			event.preventDefault();
+
       toggleVisibility(pic);
-      toggleVisibility(form);
+      toggleVisibility(info);
+
+      hideButtons();
+      enableWrite();
 		}
 
+    function displayEntry() {
+      // generateForm();
+      readOnly();
+
+      // console.log(admins)
+    }
+
+    function editEntry() {
+
+
+    }
+
+    function submitForm() {
+      info.submit();
+    }
+
+    function hideButtons() {
+      for (let i = 0; i < oldAdminElements.length; i++){
+        oldAdminElements[i].style.display = 'none';
+      }
+    }
+
+    function showButtons() {
+      for (let i = 0; i < oldAdminElements.length; i++){
+        oldAdminElements[i].style.display = 'block';
+      }
+    }
+
+    function readOnly() {
+      for (let i = 0; i < formFields.length; i++) {
+        if (!formFields[i].hasAttribute('readonly')) {
+          formFields[i].setAttribute('readonly', 'readonly');
+        }
+      }
+    }
+
+    function enableWrite() {
+      for (let i = 0; i < formFields.length; i++) {
+        if (formFields[i].hasAttribute('readonly')) {
+          formFields[i].removeAttribute('readonly');
+        }
+      }
+    }
+
     function toggleVisibility(elem) {
-      console.log(elem)
-      
       if(elem.style.display == "block") {
         elem.style.display = "none"; 
       }
       else if(elem.style.display == "none") {
         elem.style.display = "block";
       }
-      
     }
 
 	</script>

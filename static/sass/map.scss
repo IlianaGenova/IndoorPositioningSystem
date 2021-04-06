@@ -1,0 +1,38 @@
+@import "colors";
+
+//filepond basic style - restyling
+.filepond--drop-label {
+	// background-color: $thistle;
+	color: $independence;
+}
+
+.filepond--label-action {
+	color: $text;
+	font-weight: bold;
+}
+
+// .file-inputarea {	
+// 	// color: $text;
+// }
+
+.filepond--panel-root {
+	// background-color: $thistle;
+	// border-radius: 0.5em;
+	background-color: $light-thistle;
+  border: 2px solid $independence;
+}
+
+.filepond--drip-blob  {
+	background-color: $independence;
+}
+
+.filepond--item-panel {
+	background-color: $light-thistle;
+	// border: 1px solid $independence;
+	// box-shadow: ;
+	color: $text;
+}
+
+.filepond--file {
+	color: $text;
+}

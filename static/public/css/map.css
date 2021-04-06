@@ -1,0 +1,20 @@
+.filepond--drop-label {
+  color: #564c67; }
+
+.filepond--label-action {
+  color: #363248;
+  font-weight: bold; }
+
+.filepond--panel-root {
+  background-color: #d3c6d0;
+  border: 2px solid #564c67; }
+
+.filepond--drip-blob {
+  background-color: #564c67; }
+
+.filepond--item-panel {
+  background-color: #d3c6d0;
+  color: #363248; }
+
+.filepond--file {
+  color: #363248; }
