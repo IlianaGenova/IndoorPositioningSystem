@@ -66,6 +66,9 @@ app.listen(port, () => {
 // serve static files from template
 const path = require("path");
 app.use(express.static(path.join(__dirname, "/static")));
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
+
 
 // //QR code generation 
 // const QRcode = require("qrcode.js")
@@ -162,7 +165,6 @@ app.get('/admin/maps', (req, res) => {
 			console.log(error);
 		}
 		else {
-			console.log(maps.length)
 			res.render("maps", {maps: maps});
 		}
 	});
@@ -191,6 +193,28 @@ app.post('/admin/maps', (req, res) => {
 	
 		}
 	}
+})
+
+app.get('/admin/tag', (req, res) => {
+	Tag.find().exec(function (error, tags) {
+		if(error) {
+			console.log(error);
+		}
+		else {
+			res.render("manage-tags", {tags: tags});
+		}
+	});
+})
+
+app.get('/admin/anchor', (req, res) => {
+	Anchor.find().exec(function (error, anchors) {
+		if(error) {
+			console.log(error);
+		}
+		else {
+			res.render("manage-anchors", {anchors: anchors});
+		}
+	});
 })
 
 app.get('/ranging', (req, res, next) => {

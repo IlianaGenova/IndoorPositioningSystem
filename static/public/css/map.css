@@ -1,3 +1,69 @@
+.body {
+  font-weight: 300; }
+  .body .maps {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; }
+    .body .maps .form-heading {
+      margin: 60px auto 0px auto;
+      height: 10%; }
+      .body .maps .form-heading .title {
+        font-size: 4em;
+        margin: 0; }
+      .body .maps .form-heading .subtitle {
+        font-size: 1.8em;
+        margin-top: 0px;
+        margin-bottom: 50px; }
+      .body .maps .form-heading * {
+        font-weight: 300; }
+    .body .maps .logo {
+      margin: 0; }
+    .body .maps .map {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      padding: 5px;
+      max-width: 320px;
+      max-height: 220px;
+      border: 2px solid #363248;
+      border-radius: 10px;
+      outline: none;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.5em;
+      color: #363248;
+      background-color: white;
+      -moz-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+      .body .maps .map * {
+        max-width: 300px;
+        max-height: 200px; }
+    .body .maps .map:hover {
+      opacity: 0.75;
+      transition: .15s ease-in-out;
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12); }
+  .body .form {
+    float: right;
+    width: 30%;
+    text-align: center; }
+    .body .form .logo {
+      margin: 40px 0px;
+      height: 60%;
+      width: 60%; }
+    .body .form .filepond {
+      margin-top: 30px;
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+    .body .form .filepond:hover {
+      opacity: 0.85;
+      transition: .15s ease-in-out;
+      box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12); }
+    .body .form .submit {
+      margin: 0;
+      font-weight: 300; }
+
 .filepond--drop-label {
   color: #564c67; }
 

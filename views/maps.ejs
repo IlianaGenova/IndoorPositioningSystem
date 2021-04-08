@@ -24,28 +24,38 @@
       <!-- <canvas id="canvas" class="canvas visualise"></canvas> -->
 			<!-- <div id="my-interactive" class="interactive"></div> -->
 			<!-- <div id="myText"></div> -->
-      <form id="anchor" class="form" action="/admin/maps" method="post" onsubmit="submitForm();">
-				<h1 class="title">Maps</h1>
-				<br>
-        <% if (maps.length >= 1) { %>
-          <h2>Click a map to select it as active.</h2>
-          <% for(let i = 0; i < maps.length; i++) { %>
-            <% if(maps[i].fileType == 'image/png' || maps[i].fileType == 'image/jpeg') { %>
-              <img src="<%= "data:"+ maps[i].fileType + ";base64," + maps[i].file %>" alt="nothing here">
-              <br>
-              <% } %>
-            <% } %>
-          <% } if (maps.length == 0) { %>
-            <img class="logo hide" src="/svgs/position.svg" alt="-Stay connected-">
-            <h2>Your maps will appear here after uploading.</h2>
-          <% } %>
-                
-  			
+      <!-- <form id="maps" class="form" action="/admin/maps" method="post" onsubmit="submitForm();"> -->
+        <div class="maps"> 
+          <div class="form-heading">
+            <h1 class="title">Maps</h1>
+            <!-- <br> -->
+            <h2 class="subtitle">Click a map to select it as active.</h2>
+            <!-- TODO mark active map -->
+            <% if (maps.length >= 1) { %>
+              <% for(let i = 0; i < maps.length; i++) { %>
+                <% if(maps[i].fileType == 'image/png' || maps[i].fileType == 'image/jpeg') { %>
+                  <button class="map" type="submit" onclick="">
+                    <img src="<%= "data:"+ maps[i].fileType + ";base64," + maps[i].file %>" alt="nothing here">
+                    <br>
+                  </button>
+                  <% } %>
+                  <% } %>
+                  <% } if (maps.length == 0) { %>
+                    <img class="logo hide" src="/svgs/map.svg" alt="-Stay connected-">
+                    <h2>Your maps will appear here after uploading. <br> No current maps uploaded found.</h2>
+                    <% } %>
+          </div>         
+      </div>
+      <!-- TODO add name to schematic -->
+      <!-- TODO select map as active -->
+      <!-- TODO remove map -->
+      <!-- </form> -->
+      <form id="form" class="form" action="/admin/maps" method="post" onsubmit="submitForm();">
 				<!-- <button type="button" class="option generate" onclick="drawCoordinateSystem()">Set coordinates</button> -->
-				
+        <img class="logo hide" src="/svgs/add_files.svg" alt="-Stay connected-">
+        <!-- <br> -->
 			  <input type="file" name="fileinput" class="file-inputarea filepond">
-				
-				<br>
+				<!-- <br> -->
 				<input class="submit" type="submit">
 			</form>
 		</div>
@@ -53,7 +63,7 @@
 
 
 	<script type="text/javascript">
-		var form = document.getElementById('anchor')
+		var form = document.getElementById('form')
 	
 		function submitForm() {
 			event.preventDefault();
