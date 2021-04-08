@@ -90,9 +90,14 @@
     
 
     .logo {
-      margin: 40px 0px;
+      margin-top: 40px;
       height: 60%;
       width: 60%;
+    }
+
+    .active {
+      margin: 10px 0;
+      font-size: 1.2em;;
     }
 
     .filepond {
@@ -109,7 +114,7 @@
     }
 
     .submit {
-      margin: 0;
+      margin-bottom: 20px;
       font-weight: 300;
     }
   }

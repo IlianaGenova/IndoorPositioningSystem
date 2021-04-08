@@ -67,7 +67,7 @@ app.listen(port, () => {
 const path = require("path");
 app.use(express.static(path.join(__dirname, "/static")));
 app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb'}));
+// app.use(express.urlencoded({limit: '50mb'}));
 
 
 // //QR code generation 
@@ -178,10 +178,17 @@ app.post('/admin/maps', (req, res) => {
 			var data = {
 				date: new Date(),
 				file: file.data,
-				fileType: file.type
+				fileType: file.type,
+				fileName: file.name,
+				active: false
 			}
 
-			console.log(data)
+			if(req.body.activemap == "1") {
+				data.active = true
+			}
+
+			console.log(file)
+			// TODO image size???
 
 			Map.create(data, function (error, map) {
 				if (error) {

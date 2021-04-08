@@ -14,6 +14,7 @@
 	<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
 	<script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
 	<script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
+  <script src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js"></script>
 	<script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
 	<script defer src="/fileupload.js"></script>
 
@@ -56,6 +57,10 @@
         <!-- <br> -->
 			  <input type="file" name="fileinput" class="file-inputarea filepond">
 				<!-- <br> -->
+        <div class="active">
+          <input type="checkbox" id="active-map" name="activemap" value="1">
+          <label for="active-map">Select map as active</label><br>
+        </div>
 				<input class="submit" type="submit">
 			</form>
 		</div>

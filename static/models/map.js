@@ -9,6 +9,13 @@ var MapSchema = new mongoose.Schema({
   },
   fileType: {
 	  type: String
+  },
+  fileName: {
+    type: String
+  },
+  // TODO ifn not jpg or jpeg dont add 
+  active: {
+    type: Boolean
   }
 });
 
