@@ -1,5 +1,7 @@
 .body {
-  font-weight: 300; }
+  font-weight: 300;
+  flex-direction: row;
+  justify-content: space-evenly; }
   .body .maps {
     display: flex;
     flex-direction: column;
@@ -57,6 +59,7 @@
       font-size: 1.2em; }
     .body .form .filepond {
       margin-top: 30px;
+      border-radius: 10px;
       box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
     .body .form .filepond:hover {
@@ -68,21 +71,29 @@
       font-weight: 300; }
 
 .filepond--drop-label {
-  color: #564c67; }
+  color: #564c67;
+  border-radius: 20px;
+  border: 2px transparent #564c67; }
 
 .filepond--label-action {
   color: #363248;
   font-weight: bold; }
 
 .filepond--panel-root {
-  background-color: #d3c6d0;
-  border: 2px solid #564c67; }
+  border-radius: 20px;
+  background-color: #DB9795;
+  border: 2px transparent #564c67; }
+
+.filepond--browser {
+  display: none;
+  border-radius: 20px;
+  opacity: 0; }
 
 .filepond--drip-blob {
   background-color: #564c67; }
 
 .filepond--item-panel {
-  background-color: #d3c6d0;
+  background-color: #DB9795;
   color: #363248; }
 
 .filepond--file {

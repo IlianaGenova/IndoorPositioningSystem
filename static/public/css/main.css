@@ -6,15 +6,11 @@
 body {
   color: #363248;
   font-family: 'Roboto', sans-serif;
-  background-color: #f8edee;
-  display: flexbox;
+  background-color: #F9B8AA;
   justify-content: center; }
   body .body {
     width: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    align-content: flex-end;
-    justify-content: space-around; }
+    display: flex; }
   body h1 {
     font-size: 5em;
     margin: 20px;
@@ -32,9 +28,9 @@ body {
     height: auto; }
     body .form input, body .form .submit {
       margin: 10px;
-      padding: 5px;
-      border: 2px solid #363248;
-      border-radius: 10px;
+      padding: 10px;
+      border: 2px solid #DB9795;
+      border-radius: 20px;
       outline: none;
       font-family: 'Roboto', sans-serif;
       font-size: 1.5em;
@@ -45,7 +41,7 @@ body {
       -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
       box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); }
     body .form input:focus {
-      border: 3px solid #dcbcd4;
+      border: 3px solid #DB9795;
       color: #363248;
       -moz-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
       -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
@@ -59,11 +55,12 @@ body {
     body .form .option:hover {
       box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12); }
     body .form .submit {
-      height: 2em;
-      width: 5em;
+      height: 3em;
+      width: 10em;
       margin-top: 20px;
-      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+      background-color: #DB9795;
+      color: #363248;
+      box-shadow: 0px 2px 2px #835351; }
     body .form .submit:hover {
       box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12); }
     body .form ::placeholder, body .form :-ms-input-placeholder, body .form ::-ms-input-placeholder {
@@ -71,23 +68,23 @@ body {
     body .form .choice {
       padding: 10px;
       margin: 10px;
-      height: 6em;
-      width: 7em;
+      height: 7em;
+      width: 7.5em;
       font-weight: bold;
       box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
       body .form .choice img {
         margin: 10px;
         height: 3em;
-        width: 3em; }
+        width: 3em;
+        opacity: 0.7; }
     body .form .choice:hover {
       box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15), 0 5px 5px rgba(0, 0, 0, 0.12); }
     body .form .choice:focus {
-      background-color: #d3c6d0;
-      border: 2px solid #564c67;
+      background-color: #db9795a2;
       opacity: 0.7;
       transition: .35s ease-in-out; }
     body .form .submit:hover {
-      background-color: #d3c6d0;
+      background-color: #db9795a2;
       opacity: 0.8;
       transition: .2s ease-in-out; }

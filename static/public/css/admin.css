@@ -1,12 +1,9 @@
 .body {
   margin: 0;
-  margin-top: 20px;
   width: 100%;
-  display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  align-items: center;
-  align-content: flex-end; }
+  align-items: center; }
   .body .headings {
     margin: 60px auto;
     margin-left: 10px;
@@ -16,9 +13,7 @@
   .body .buttons {
     margin: 10px auto; }
     .body .buttons button {
-      color: #564c67;
-      width: 15em;
-      height: 2em;
+      width: 18em;
       text-align: left;
       display: inline-flex;
       align-items: center;
@@ -31,3 +26,5 @@
     font-weight: 500; }
   .body .logo {
     margin: 150px 10px 0px 10px; }
+  .body .form {
+    margin-left: 5em; }

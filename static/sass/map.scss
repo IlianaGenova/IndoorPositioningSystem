@@ -3,6 +3,9 @@
 .body {
   
   font-weight: 300;
+  flex-direction: row;
+  justify-content: space-evenly;
+  // align-items: center;
 
   .maps {
     
@@ -102,6 +105,7 @@
 
     .filepond {
       margin-top: 30px;
+      border-radius: 10px;
       box-shadow: 1px 2px 4px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
       transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     }
@@ -125,6 +129,8 @@
 .filepond--drop-label {
 	// background-color: $thistle;
 	color: $independence;
+  border-radius: 20px;
+  border: 2px transparent $independence;
 }
 
 .filepond--label-action {
@@ -138,9 +144,15 @@
 
 .filepond--panel-root {
 	// background-color: $thistle;
-	// border-radius: 0.5em;
-	background-color: $light-thistle;
-  border: 2px solid $independence;
+	border-radius: 20px;
+	background-color: $thistle;
+  border: 2px transparent $independence;
+}
+
+.filepond--browser {
+  display: none;
+  border-radius: 20px;
+  opacity: 0;
 }
 
 .filepond--drip-blob  {
@@ -148,7 +160,7 @@
 }
 
 .filepond--item-panel {
-	background-color: $light-thistle;
+	background-color: $thistle;
 	// border: 1px solid $independence;
 	// box-shadow: ;
 	color: $text;

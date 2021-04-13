@@ -1,11 +1,7 @@
 .body {
   margin: 0;
-  margin-top: 100px;
-  width: 95%;
-  position: absolute;
-  text-align: left;
-  display: flex;
+  margin-top: 40px;
   flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
-  align-content: flex-end; }
+  text-align: center; }

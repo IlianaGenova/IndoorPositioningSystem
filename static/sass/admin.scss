@@ -2,7 +2,7 @@
 
 .body {
 	margin: 0;
-  margin-top: 20px;
+  // margin-top: 20px;
 	width: 100%;
 	// position: absolute;
 	// top: 50%;
@@ -11,11 +11,9 @@
 	// transform: translate(-50%, -50%);
 	// text-align: center;
 
-	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
 	align-items: center;
-	align-content: flex-end;
   
   .headings {
     * {
@@ -25,6 +23,7 @@
     margin: 60px auto;
     margin-left: 10px;
     margin-top: 0px;
+    // height: 30%;
 
   }
 
@@ -32,9 +31,9 @@
     margin: 10px auto;
 
     button {
-      color: $independence;
-      width: 15em;
-      height: 2em;
+      // color: $independence;
+      width: 18em;
+      // height: 2em;
       text-align: left;
       // font-weight: bold
       display: inline-flex;
@@ -55,5 +54,10 @@
 
   .logo {
     margin: 150px 10px 0px 10px;
+    // width: 30%;
+  }
+
+  .form {
+    margin-left: 5em;
   }
 }

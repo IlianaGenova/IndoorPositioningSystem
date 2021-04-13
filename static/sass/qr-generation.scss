@@ -1,13 +1,13 @@
 @import "colors";
 
 .body {
-	margin: 0;
+	margin-top: 30px;
 	width: 100%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
+	// position: absolute;
+	// top: 50%;
+	// left: 50%;
+	// -ms-transform: translate(-50%, -50%);
+	// transform: translate(-50%, -50%);
 	text-align: center;
 
 	display: flex;
@@ -17,7 +17,7 @@
 	align-content: flex-end;
 
   h1 {
-    margin: 0 auto;;
+    margin: 0 auto 30px auto;
   }
  
 	.code {
@@ -38,7 +38,14 @@
 	#printButton {
 		display: none;
 		margin:  10px auto 75px auto;
-		padding: 5px 25px;
+		border: $thistle;
+		border-radius: 20px;
+		background-color: $thistle;
+		height: 3em;
+		width: 10em;
+
+		margin-top: 20px;
+		text-align: center;
 
 		// height: 2em;
 		// width: 4em;

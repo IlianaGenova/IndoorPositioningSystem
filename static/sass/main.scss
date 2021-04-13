@@ -15,7 +15,7 @@ body {
 	color: $text;
 	font-family: 'Roboto', sans-serif;
 	background-color: $lavender-blush;
-	display: flexbox;
+	// display: flexbox;
 	justify-content: center;
 
 	.body {
@@ -23,10 +23,10 @@ body {
 		// margin-top: 50px;
 
 		display: flex;
-		flex-flow: row wrap;
+		// flex-flow: row wrap;
 		// align-items: center;
-		align-content: flex-end;
-		justify-content: space-around;
+		// align-content: flex-end;
+		// justify-content: space-around;
 	}
 
 	h1 {
@@ -52,10 +52,10 @@ body {
 
 		input, .submit {
 			margin: 10px;
-			padding: 5px;
+			padding: 10px;
 
-			border: 2px solid $text;
-			border-radius: 10px;
+			border: 2px solid $thistle;
+			border-radius: 20px;
 			outline: none;
 
 			font-family: 'Roboto', sans-serif;
@@ -96,13 +96,18 @@ body {
 		}
 
 		.submit {
-			height: 2em;
-			width: 5em;
+			height: 3em;
+			width: 10em;
 
 			margin-top: 20px;
+			background-color: $thistle;
+			// opacity: 0.9;
+			color: $text;
+			// outline: none;
 
-			box-shadow: 1px 2px 4px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-			transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+			// box-shadow: 1px 2px 4px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+			box-shadow: 0px 2px 2px $dark-thistle;
+			// transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 		}
 
 		.submit:hover {
@@ -117,8 +122,8 @@ body {
 			padding: 10px;
 			margin: 10px;
 
-			height: 6em;
-			width: 7em;
+			height: 7em;
+			width: 7.5em;
 
 			font-weight: bold;
 
@@ -126,6 +131,7 @@ body {
 				margin: 10px;
 				height: 3em;
 				width: 3em;
+				opacity: 0.7;	
 			}
 
 			box-shadow: 1px 2px 4px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -138,7 +144,7 @@ body {
 
 		.choice:focus {
 			background-color: $light-thistle;
-			border: 2px solid $independence;
+			// border: 2px solid $independence;
 			
 			opacity: 0.7;
 			transition: .35s ease-in-out;
