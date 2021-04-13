@@ -202,27 +202,27 @@ app.post('/admin/maps', (req, res) => {
 	}
 })
 
-// app.get('/admin/tag', (req, res) => {
-// 	Tag.find().exec(function (error, tags) {
-// 		if(error) {
-// 			console.log(error);
-// 		}
-// 		else {
-// 			res.render("manage-tags", {tags: tags});
-// 		}
-// 	});
-// })
+app.get('/admin/tags', (req, res) => {
+	Tag.find().exec(function (error, tags) {
+		if(error) {
+			console.log(error);
+		}
+		else {
+			res.render("manage-tags", {tags: tags});
+		}
+	});
+})
 
-// app.get('/admin/anchor', (req, res) => {
-// 	Anchor.find().exec(function (error, anchors) {
-// 		if(error) {
-// 			console.log(error);
-// 		}
-// 		else {
-// 			res.render("manage-anchors", {anchors: anchors});
-// 		}
-// 	});
-// })
+app.get('/admin/anchors', (req, res) => {
+	Anchor.find().exec(function (error, anchors) {
+		if(error) {
+			console.log(error);
+		}
+		else {
+			res.render("manage-anchors", {anchors: anchors});
+		}
+	});
+})
 
 app.get('/ranging', (req, res, next) => {
 	let lon = req.body.lon

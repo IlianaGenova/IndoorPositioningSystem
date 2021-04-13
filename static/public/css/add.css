@@ -41,6 +41,8 @@
       border: 1px solid #DB9795;
       box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0px 2px 2px #835351;
+      border-radius: 20px;
       margin: 10px;
       padding: 10px;
       width: 18em;
