@@ -1,0 +1,46 @@
+@import "colors";
+
+.body {
+  justify-content: space-evenly;
+
+  .headings, .list {
+    margin-right: 30px;
+    justify-content: flex-end;
+
+    * {
+      text-align: right;
+    }
+  }
+
+  .list {
+    // align-items: flex-start;
+    justify-content: flex-end;
+
+    .entry {
+      width: 30em;
+      height: 8em;
+      margin-right: 0;
+      padding: 5px 30px;
+      
+      
+      
+      .title {
+        height: 40%;
+        font-size: 1.1em;
+        margin: 0;
+        margin-bottom: 5px;
+        
+      }
+
+      p {
+        font-size: 1.3em;
+      }
+
+      * {
+        align-self: flex-end;
+        text-align: right;
+      }
+    }   
+     
+  }
+}

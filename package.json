@@ -9,6 +9,7 @@
     "express": "^4.17.1",
     "filepond": "^4.26.0",
     "node-sass": "^5.0.0",
+    "node-trilateration": "^1.0.0",
     "nodemon": "^2.0.6",
     "p5": "^1.1.9",
     "socket.io": "^3.1.1"

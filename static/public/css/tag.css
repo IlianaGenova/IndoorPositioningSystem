@@ -1,7 +1,9 @@
 .body {
   margin: 0;
-  margin-top: 40px;
+  margin-top: 60px;
   flex-flow: row wrap;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-end;
   text-align: center; }
+  .body img {
+    margin-top: 9em; }

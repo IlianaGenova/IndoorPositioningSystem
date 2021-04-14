@@ -1,0 +1,24 @@
+.body {
+  justify-content: space-evenly; }
+  .body .headings, .body .list {
+    margin-right: 30px;
+    justify-content: flex-end; }
+    .body .headings *, .body .list * {
+      text-align: right; }
+  .body .list {
+    justify-content: flex-end; }
+    .body .list .entry {
+      width: 30em;
+      height: 8em;
+      margin-right: 0;
+      padding: 5px 30px; }
+      .body .list .entry .title {
+        height: 40%;
+        font-size: 1.1em;
+        margin: 0;
+        margin-bottom: 5px; }
+      .body .list .entry p {
+        font-size: 1.3em; }
+      .body .list .entry * {
+        align-self: flex-end;
+        text-align: right; }

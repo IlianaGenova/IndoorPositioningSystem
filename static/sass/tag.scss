@@ -2,19 +2,21 @@
 
 .body {
 	margin: 0;
-	margin-top: 40px;
+	margin-top: 60px;
 	// width: 100%;
 	// position: absolute;
 	// top: 50%;
 	// left: 50%;
 	// -ms-transform: translate(-50%, -50%);
 	// transform: translate(-50%, -50%);
-	// text-align: center;
 
 	// display: flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
-	align-items: center;
-	text-align: center;
-	
+	align-items: flex-end;
+	text-align: center;	
+
+	img {
+		margin-top: 9em;
+	}
 }

@@ -6,9 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel='stylesheet' type='text/css' href='/public/css/main.css' />
 	<link rel='stylesheet' type='text/css' href='/public/css/add.css' />
+	<link rel='stylesheet' type='text/css' href='/public/css/manage-tags.css' />
 	<title>IPS</title>
 </head>
 <body>
+  <!-- TODO edit profiles and add additional info -->
 		<main class="body">
 			<div class="main">
         <div class="headings">
@@ -25,23 +27,11 @@
         <div class="list">
 
           <% for(let i = 0; i < tags.length; i++) { %>
-            <button class="entry" id="admin<%= i %>" value="<%= i %>" onclick="displayEntry();">
+            <button class="entry" id="tag<%= i %>" value="<%= i %>" onclick="displayEntry();">
               <div class="title">
-
-                <h2><%= tags[i].name %> <%= tags[i].surname %></h2>
-               
-                <%if(tags[i].main_admin) {%>
-                  <h4 class="main">Main admin</h4>
-                <% } %>
-
+                <h2><%= tags[i].name %></h2>
               </div>
-              
-              <div class="contacts">
-                <p>Contacts: </p>
-                <p>E-mail: <%= tags[i].email %></p>
-                <p>Phone number: <%= tags[i].phone %></p>
-              </div>
-
+            <p>Tag ID: <%= tags[i].tagID%></p>
             </button>
           <% } %>
 
