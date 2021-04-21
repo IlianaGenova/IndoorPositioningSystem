@@ -39,9 +39,9 @@
                     <img src="<%= "data:"+ maps[i].fileType + ";base64," + maps[i].file %>" alt="nothing here">
                     <br>
                   </button>
-                  <% } %>
-                  <% } %>
-                  <% } if (maps.length == 0) { %>
+                <% } %>
+              <% } %>
+            <% } if (maps.length == 0) { %>
                     <img class="logo hide" src="/svgs/map.svg" alt="-Stay connected-">
                     <h2>Your maps will appear here after uploading. <br> No current maps uploaded found.</h2>
                     <% } %>
@@ -51,13 +51,13 @@
       <!-- TODO select map as active -->
       <!-- TODO remove map -->
       <!-- </form> -->
-      <form id="form" class="form" action="/admin/maps" method="post" onsubmit="submitForm();">
-				<!-- <button type="button" class="option generate" onclick="drawCoordinateSystem()">Set coordinates</button> -->
+      <form id="form" class="form" action="/admin/maps" method="post" onsubmit="getSize();">
         <img class="logo hide" src="/svgs/add_files.svg" alt="-Stay connected-">
-        <!-- <br> -->
-			  <input type="file" name="fileinput" class="file-inputarea filepond">
-				<!-- <br> -->
-        <div class="active">
+			  <input type="file" id="file" name="fileinput" class="file-inputarea filepond">
+			  <input type="text" name="width" id="width" style="display:none" value="">
+			  <input type="text" name="height" id="height" style="display:none" value="">
+        
+				<div class="active">
           <input type="checkbox" id="active-map" name="activemap" value="1">
           <label for="active-map">Select map as active</label><br>
         </div>
@@ -68,11 +68,34 @@
 
 
 	<script type="text/javascript">
-		var form = document.getElementById('form')
-	
+		let form = document.getElementById('form')
+    let w = document.getElementById('width')
+    let h = document.getElementById('height')
+
+    function getSize() {
+      event.preventDefault();
+
+      let formData = new FormData(form)
+      let parsedFile = JSON.parse(formData.get('fileinput'))
+
+      let image = new Image()
+      image.onload = function() {
+        // w = image.width
+        // h = image.height
+        w.value = image.width
+        h.value = image.height
+      }
+      image.src = "data:image/png;base64," + parsedFile.data;
+      
+      image.addEventListener('load', (event) => {
+          console.log('Image has been loaded!');
+          submitForm()
+      });
+    }
+
 		function submitForm() {
 			event.preventDefault();
-			form.submit();
+      form.submit();
 		}
 	</script>
 

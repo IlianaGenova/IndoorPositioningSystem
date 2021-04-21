@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel='stylesheet' type='text/css' href='/public/css/main.css' />
+	<link rel='stylesheet' type='text/css' href='/public/css/login.css' />
+	<title>IPS</title>
+</head>
+<body>
+		<main class="body">
+			<div class="main">
+        <div class="headings">
+            <h1>Hello, admin!</h1>
+            <h2>Please authenticate.</h2>
+          
+        </div>
+            
+        <form id="form" class="form toggle" action="/admin/auth" method="post" onsubmit="submitForm();">
+        
+          <input type="input" class="option info-option" name="email" placeholder="Email"/>
+          </br>
+          <input type="input" class="option info-option" name="password" placeholder="Password"/>
+          </br>
+          
+          <input class="submit" type="submit">
+        </form>
+      </div>
+
+			<img id="img" style="display:block" class="logo toggle" src="/svgs/community.svg" alt="-Stay connected-">
+		</main>
+	</div>
+
+
+	<script type="text/javascript">
+		var form = document.getElementById("form")
+		
+    function submitForm() {
+      event.preventDefault();
+      form.submit();
+    }
+
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</body>
+</html>

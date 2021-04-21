@@ -70,6 +70,10 @@
 				</br>
         <input type="input" class="option info-option" name="phone" placeholder="Phone"/>
 				</br>
+        <input type="input" class="option info-option" name="password" placeholder="Password"/>
+				</br>
+        <input type="input" class="option info-option" name="password2" placeholder="Repeat password"/>
+				</br>
 				<!-- TODO if main admin - give rights to another -->
         <!-- TODO delete profile -->
         <!-- TODO incorporate pwd -->
@@ -113,7 +117,14 @@
     }
 
     function submitForm() {
-      info.submit();
+      if(info.password.value == info.password2.value) {
+        console.log("Passwords match. Creating admin...")
+        info.submit();
+      }
+      else {
+        alert("Passwords do not match.")
+      }
+
     }
 
     function hideButtons() {

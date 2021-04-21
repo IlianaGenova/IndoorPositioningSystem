@@ -3,21 +3,29 @@ import Interactive from "https://vectorjs.org/interactive.js";
 //  export default function main(id) {
 function main(id) {
     // Initialize the interactive
-    let margin = 15;
+    let margin = 1;
     let interactive = new Interactive(id);
+    let svg = document.getElementById("my-interactive");
+    
+    interactive.width = svg.offsetWidth;
+    interactive.height = svg.offsetHeight;
     // interactive.border = true;
     interactive.originX = interactive.width / 2 + margin;
     interactive.originY = interactive.height / 2 + margin;
     interactive.width += 2 * margin;
     interactive.height += 2 * margin;
+
+    console.log(interactive.width, interactive.height)
+    
     interactive.style.overflow = 'visible';
     // Create three control points
     let point = interactive.control(0, 0);
     let xAxis = interactive.line(-interactive.width / 2 + margin, 0, interactive.width / 2 - margin, 0);
     let yAxis = interactive.line(0, -interactive.height / 2 + margin, 0, interactive.height / 2 - margin);
-    let rectangle = interactive.rectangle(xAxis.x1, yAxis.y1, xAxis.x2 - xAxis.x1, yAxis.y2 - yAxis.y1);
-    rectangle.classList.add('default');
-    point.constrainWithinBox(xAxis.x1, yAxis.y1, xAxis.x2, yAxis.y2);
+    // let rectangle = interactive.rectangle(xAxis.x1, yAxis.y1, xAxis.x2 - xAxis.x1, yAxis.y2 - yAxis.y1);
+    // rectangle.style.strokeOpacity = "0"
+    // rectangle.classList.add('default');
+    // point.constrainWithinBox(xAxis.x1, yAxis.y1, xAxis.x2, yAxis.y2);
     interactive.circle(0, 0, 3).style.fill = '#404040';
     let text = interactive.text(150, 150, "myText");
     text.addDependency(point);
@@ -60,19 +68,19 @@ function main(id) {
         document.getElementById("x").value = point.x;
         document.getElementById("y").value = point.y;
     };
-    let w = 50;
-    let h = 50;
-    for (let i = -6; i < 6; i++) {
-        for (let j = -3; j < 3; j++) {
-            let x = i * w;
-            let y = j * h;
-            let rect = interactive.rectangle(x, y, w, h);
-            rect.style.strokeOpacity = '.2';
-            rect.classList.add('default');
-            rect.root.setAttribute('vector-effect', 'non-scaling-stroke');
-            interactive.background.prependChild(rect);
-        }
-    }
+    // let w = 50;
+    // let h = 50;
+    // for (let i = -6; i < 6; i++) {
+    //     for (let j = -3; j < 3; j++) {
+    //         let x = i * w;
+    //         let y = j * h;
+    //         // let rect = interactive.rectangle(x, y, w, h);
+    //         // rect.style.strokeOpacity = '.0';
+    //         // rect.classList.add('default');
+    //         // rect.root.setAttribute('vector-effect', 'non-scaling-stroke');
+    //         // interactive.background.prependChild(rect);
+    //     }
+    // }
     point.translate(150, -100);
 }
 

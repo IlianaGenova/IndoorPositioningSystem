@@ -26,8 +26,10 @@
 		<div class="body">
       <!-- <img class="logo hide" src="/svgs/position.svg" alt="-Stay connected-"> -->
 			<!-- <canvas id="canvas" class="canvas visualise"></canvas> -->
-			<div id="my-interactive" class="interactive"></div>
+			<div id="my-interactive" class="interactive" style="background: url('<%= "data:" + map.fileType + ";base64," + map.file %>') no-repeat center #eee; "></div>
+			<!-- object-fit: cover; background-size:100% 100%;  -->
 			<div id="myText"></div>
+			<!-- <img src="<%= "data:"+ map.fileType + ";base64," + map.file %>" style="display: none;" id="img" alt="nothing here"> -->
       <form id="anchor" class="form" action="/admin/anchor" method="post" onsubmit="submitForm();">
 				<h1 class="title">Anchor</h1>
 				<br>
@@ -49,7 +51,7 @@
 
 	<script type="text/javascript">
 		var form = document.getElementById('anchor')
-	
+
 		function submitForm() {
 			event.preventDefault();
 			form.submit();
