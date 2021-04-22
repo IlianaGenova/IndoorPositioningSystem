@@ -49,18 +49,15 @@ AdminSchema.statics.authenticate = function (email, password, callback) {
 }
 
 AdminSchema.pre('save', function (next) {
-	console.log("kakvo")
   var admin = this;
-  bcrypt.hashSync(admin.password, bcrypt.genSaltSync(10), function (err, hash) {
+  console.log(admin)
+  bcrypt.hash(admin.password, 10, function (err, hash) {
     if (err) {
-			console.log("0")
       return next(err);
     }
 
     admin.password = hash;
-		console.log("1")
     next();
-		console.log("2")
   })
 });
 

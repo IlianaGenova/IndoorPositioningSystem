@@ -51,7 +51,7 @@
       <!-- TODO select map as active -->
       <!-- TODO remove map -->
       <!-- </form> -->
-      <form id="form" class="form" action="/admin/maps" method="post" onsubmit="getSize();">
+      <form id="form" class="form" action="/admin/maps" method="post" onsubmit="submitForm();">
         <img class="logo hide" src="/svgs/add_files.svg" alt="-Stay connected-">
 			  <input type="file" id="file" name="fileinput" class="file-inputarea filepond">
 			  <input type="text" name="width" id="width" style="display:none" value="">
@@ -72,7 +72,7 @@
     let w = document.getElementById('width')
     let h = document.getElementById('height')
 
-    function getSize() {
+    function submitForm() {
       event.preventDefault();
 
       let formData = new FormData(form)
@@ -80,8 +80,6 @@
 
       let image = new Image()
       image.onload = function() {
-        // w = image.width
-        // h = image.height
         w.value = image.width
         h.value = image.height
       }
@@ -89,14 +87,10 @@
       
       image.addEventListener('load', (event) => {
           console.log('Image has been loaded!');
-          submitForm()
+          form.submit();
       });
     }
 
-		function submitForm() {
-			event.preventDefault();
-      form.submit();
-		}
 	</script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>

@@ -8,14 +8,14 @@
 	<link rel='stylesheet' type='text/css' href='/public/css/anchor.css' />
 	<title>IPS</title>
 
-	<!-- filepond -->
+	<!-- filepond
 	<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
 	<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
 	<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
 	<script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
 	<script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
 	<script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
-	<script defer src="/fileupload.js"></script>
+	<script defer src="/fileupload.js"></script> -->
 
 	<link rel="stylesheet" href="https://vectorjs.org/library.css">
 	<!-- <script defer src="/drawCS.js"></script> -->
@@ -24,12 +24,10 @@
 <body>
 	<div class="page">
 		<div class="body">
-      <!-- <img class="logo hide" src="/svgs/position.svg" alt="-Stay connected-"> -->
 			<!-- <canvas id="canvas" class="canvas visualise"></canvas> -->
 			<div id="my-interactive" class="interactive" style="background: url('<%= "data:" + map.fileType + ";base64," + map.file %>') no-repeat center #eee; "></div>
 			<!-- object-fit: cover; background-size:100% 100%;  -->
 			<div id="myText"></div>
-			<!-- <img src="<%= "data:"+ map.fileType + ";base64," + map.file %>" style="display: none;" id="img" alt="nothing here"> -->
       <form id="anchor" class="form" action="/admin/anchor" method="post" onsubmit="submitForm();">
 				<h1 class="title">Anchor</h1>
 				<br>
@@ -37,11 +35,7 @@
         <br>
         <input type="" class="option visualise coords" name="lon" id="x" value="" placeholder="Longtitude" readonly="readonly"/>
         <input type="" class="option visualise coords" name="lat" id="y" value="" placeholder="Latitude" readonly="readonly"/>
-				<!-- <br> -->
 				<!-- <button type="button" class="option generate" onclick="drawCoordinateSystem()">Set coordinates</button> -->
-				
-				<!-- <input type="file" name="fileinput" class="file-inputarea filepond">
-				<p></p>-->
 				<br>
 				<input class="submit" type="submit">
 			</form>
@@ -51,7 +45,46 @@
 
 	<script type="text/javascript">
 		var form = document.getElementById('anchor')
+	 	var int = document.getElementById("my-interactive");
 
+		function addImageSize() {
+			console.log('Image size set');
+			// console.log('<%=map.width%>')
+			int.style.width = '<%=map.width%>' + 'px';
+			int.style.height = '<%=map.height%>' + 'px';
+		}
+
+		function injectFile(filePath) {
+			var newScript = document.createElement('script');
+
+			newScript.type = 'module';
+			newScript.src = filePath;
+			document.getElementsByTagName('head')[0].appendChild(newScript);
+		}
+
+		// let loading = new Promise((resolve, reject) => {
+		// 	console.log('Initial');
+		// 	resolve();
+		// })
+		// .then(() => {
+		// 		// throw new Error('Something failed');
+		// 		console.log('Do this');
+		// })
+		// .catch(() => {
+		// 		console.error('Do that');
+		// })
+		// .then(() => {
+		// 		console.log('Do this, no matter what happened before');
+		// });
+		//TODO promise
+
+		window.addEventListener('load', (event) => {
+				console.log("Page has been loaded")
+				addImageSize()
+				setTimeout(() => {injectFile("../drawCS.js");}, 500);
+				// console.log(int.style.width + " " + int.style.height)
+			});
+	
 		function submitForm() {
 			event.preventDefault();
 			form.submit();
@@ -60,7 +93,7 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type="module" src="/drawCS.js"></script>
+	<!-- <script type="module" src="/drawCS.js"></script> -->
 	
 </body>
 </html>

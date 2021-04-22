@@ -6,12 +6,6 @@ const client = new MongoClient(uri, { useNewUrlParser: true })
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-//cookies
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-
-
-
 //client on connect -> DB
 client.connect(err => {
 	const collection = client.db("ips").collection("tags")
@@ -74,9 +68,12 @@ app.use(express.static(path.join(__dirname, "/static")));
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 
+
+//cookies
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 // app.use(cookieParser(config.cookieSecret))
-
 
 // //QR code generation 
 // const QRcode = require("qrcode.js")
@@ -97,10 +94,10 @@ function generateAccessToken(username) {
 function authenticateToken(req, res, next) {
   // const authHeader = req.headers['authorization']
   // const token = authHeader && authHeader.split(' ')[1]
-	console.log(req.cookies)
-	const token = req.cookies.token || '';
+	// console.log(req.cookies)
+	// console.log(req.headers)
 
-	console.log(req.headers)
+	const token = req.cookies.token || '';
   if (token == null) return res.sendStatus(401).json('You need to login');
 
   jwt.verify(token, secrets.secret, (err, user) => {
@@ -148,23 +145,18 @@ app.post('/admin/auth', (req, res, next) => {
         err.status = 401;
         return next(err);
       } else {
-        // req.session.userId = user._id;
 				let token = generateAccessToken({ username: admin.name });
+
 				let auth = 'Bearer ' + token;
-				// let header = {'Authorization': auth};
 				res.header('Authorization', auth);
-				// document.cookie = `token=${token}`
-				// let request = 	client.request('GET', '/', header);
-				// request.end();
-				// res.end()
-				// console.log(req.headers)
-				// res.json(token);
+
 				res.cookie('token', token, { httpOnly: true, secure: false, maxAge: 3600000 })
 				// return res.cookie('token', token, {
 				// 	expires: new Date(Date.now() + expiration),
 				// 	secure: false, // set to true if your using https
 				// 	httpOnly: true,
 				// });
+
         return res.render("admin", { token: token, name: admin.name});
 				// res.redirect('/admin')
       }
@@ -177,13 +169,13 @@ app.post('/admin/auth', (req, res, next) => {
 })
 
 
-app.get('/admin/tag', (req, res) => {
+app.get('/admin/tag', authenticateToken, (req, res) => {
 	// UUID - STM32F103xx documentation, стр. 1075, 30.2, device electronic signature
 	// console.log(req.query.taguid);
 	res.render("tag", { id : req.query.taguid });
 });
 
-app.post('/admin/tag', (req, res) => {
+app.post('/admin/tag', authenticateToken, (req, res) => {
 	console.log(req.body)
 
 	if(req.body.tagid && req.body.name) {
@@ -217,7 +209,7 @@ app.post('/admin/tag', (req, res) => {
 
 
 
-app.get('/admin/add', authenticateToken, (req, res) => {
+app.get('/admin/add', (req, res) => {
 	Admin.find().exec(function (error, admins) {
 		if(error){
 			console.log(error);
@@ -231,6 +223,7 @@ app.get('/admin/add', authenticateToken, (req, res) => {
 app.post('/admin/add', (req, res) => { 
 	// TODO main admin add main admins
 	//TODO check if values are ok
+
 	let data = {
 		name: req.body.name, 
 		surname: req.body.surname,
@@ -242,7 +235,7 @@ app.post('/admin/add', (req, res) => {
 
 	Admin.create(data, function (error, admin) {
 		if (error) {
-			return next(error);
+			return error;
 		} else {
 			return res.redirect('/admin/add');
 		}
@@ -250,7 +243,7 @@ app.post('/admin/add', (req, res) => {
 
 });
 
-app.get('/admin/maps', (req, res) => {
+app.get('/admin/maps', authenticateToken, (req, res) => {
 	Map.find().exec(function (error, maps) {
 		if(error) {
 			console.log(error);
@@ -261,7 +254,7 @@ app.get('/admin/maps', (req, res) => {
 	});
 })
 
-app.post('/admin/maps', (req, res) => {
+app.post('/admin/maps', authenticateToken, (req, res) => {
 	if (req.body.fileinput != null && req.body.fileinput != "") {
 		var file = JSON.parse(req.body.fileinput);
 
@@ -273,6 +266,8 @@ app.post('/admin/maps', (req, res) => {
 				file: file.data,
 				fileType: file.type,
 				fileName: file.name,
+				height: req.body.height,
+				width: req.body.width,
 				active: false
 			}
 
@@ -282,9 +277,6 @@ app.post('/admin/maps', (req, res) => {
 				Map.updateMany({active: true}, {$set: {active: false}}, (err, writeResult) => {});
 			}
 
-			// console.log(file)
-			// TODO image size???
-
 			Map.create(data, function (error, map) {
 				if (error) {
 					return next(error);
@@ -292,12 +284,11 @@ app.post('/admin/maps', (req, res) => {
 					return res.redirect('/');
 				}
 			})
-	
 		}
 	}
 })
 
-app.get('/admin/tags', (req, res) => {
+app.get('/admin/tags', authenticateToken, (req, res) => {
 	Tag.find().exec(function (error, tags) {
 		if(error) {
 			console.log(error);
@@ -308,7 +299,7 @@ app.get('/admin/tags', (req, res) => {
 	});
 })
 
-app.get('/admin/anchors', (req, res) => {
+app.get('/admin/anchors', authenticateToken, (req, res) => {
 	Anchor.find().exec(function (error, anchors) {
 		if(error) {
 			console.log(error);
@@ -376,7 +367,7 @@ app.get('/ranging', (req, res, next) => {
 	}))
 })
 
-app.get('/admin/anchor', (req, res, next) => { 
+app.get('/admin/anchor', authenticateToken, (req, res, next) => { 
 	Map.findOne({active: true}, function (error, map) {
 		if(error) {
 			console.log(error);
@@ -387,7 +378,7 @@ app.get('/admin/anchor', (req, res, next) => {
 	});
 })
 
-app.post('/admin/anchor', (req, res, next) => {
+app.post('/admin/anchor', authenticateToken, (req, res, next) => {
 	// console.log(req.body)
 	let lon = req.body.lon;
 	let lat = req.body.lat;
@@ -425,7 +416,7 @@ app.post('/admin/anchor', (req, res, next) => {
 })
 
 //QR code generation route
-app.get('/generate_QR', (req, res) => {
+app.get('/admin/generate_QR', authenticateToken, (req, res) => {
 	res.render("qr_generation");
 });
 

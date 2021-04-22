@@ -13,6 +13,12 @@ var MapSchema = new mongoose.Schema({
   fileName: {
     type: String
   },
+  width: {
+    type: Number
+  },
+  height: {
+    type: Number
+  },
   // TODO ifn not jpg or jpeg dont add 
   active: {
     type: Boolean

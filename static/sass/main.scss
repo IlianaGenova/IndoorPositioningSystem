@@ -5,7 +5,7 @@
 	// .body {
 	// 	// padding-top: 100px;
 	// }
-	.form {
+	body {
 		text-align: center;
 	}
 	
@@ -34,6 +34,10 @@ body {
 		margin: 20px;
 		margin-bottom: 40px;
 		font-weight: normal;
+	}
+
+	#text {
+		text-align: center;
 	}
 
 	.logo {
@@ -155,6 +159,7 @@ body {
 			opacity: 0.8;
 			transition: .2s ease-in-out;
 		}
+
 	}
 }
 

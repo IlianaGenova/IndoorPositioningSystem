@@ -1,6 +1,7 @@
 import Interactive from "https://vectorjs.org/interactive.js";
 //  import { Interactive } from '../interactive.js';
 //  export default function main(id) {
+
 function main(id) {
     // Initialize the interactive
     let margin = 1;
@@ -9,6 +10,7 @@ function main(id) {
     
     interactive.width = svg.offsetWidth;
     interactive.height = svg.offsetHeight;
+    console.log(svg.style.width, svg.style.height)
     // interactive.border = true;
     interactive.originX = interactive.width / 2 + margin;
     interactive.originY = interactive.height / 2 + margin;
@@ -84,5 +86,5 @@ function main(id) {
     point.translate(150, -100);
 }
 
- main("my-interactive")
+main("my-interactive")
  

@@ -9,7 +9,7 @@
 	<title>IPS</title>
 
 	<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
-	<script "type=text/javascript" src="qrcode.min.js"></script>
+	<script type="text/javascript" src="/qrcode.min.js"></script>
 	<!-- <script src="html5-qrcode-master/lib/jsqrcode-combined.min.js"></script> 
 	<script src="html5-qrcode-master/lib/html5-qrcode.min.js"></script> -->
 
@@ -17,14 +17,6 @@
 <body>
 	<div class="page">
 		<div class="body">
-			
-			<div class="qr">
-				<img class="logo" id="image" src="/svgs/phone_location.svg" alt="-Stay connected-">
-				<p id="text">click the QR code to continue configuration right now </p>
-				<button class="code" id="qrcode" type="button" name="button" title='' onclick="" ></button>
-				<button class="submit print" id="printButton" type="button" name="button" title='print' onclick="printQR();" >Print</button>
-			</div>
-
 			<form id="generate-qr" class="form" onsubmit="generateQR(); return false" >
         <h1>Generate QR</h1>
 				<input type="input" id="UID" class="option" name="taguid" placeholder="Tag UID"/>
@@ -40,6 +32,13 @@
 				<br>
 				<input class="submit" type="submit" value="Generate">
 			</form>
+
+			<div class="qr">
+				<img class="logo" id="image" src="/svgs/phone_location.svg" alt="-Stay connected-">
+				<p id="text">click the QR code to continue configuration right now </p>
+				<button class="code" id="qrcode" type="button" name="button" title='' onclick="" ></button>
+				<button class="submit print" id="printButton" type="button" name="button" title='print' onclick="printQR();" >Print</button>
+			</div>
 			
 		</div>
 	</div>
@@ -64,8 +63,9 @@
 			address = "http://localhost:8080/admin/tag?taguid=" + uid.value;
 		}
 
-
+		
 		function generateQR() {
+			event.preventDefault();
 			// var uid = document.getElementById("UID");
 			// var address = "http://localhost:8080/configuration?taguid=" + uid.value;
 
@@ -103,7 +103,6 @@
 			}
 
 			console.log(address)
-			event.preventDefault();
 			// var qrcode = new QRCode("qrcode");
 			 // qrcode.makeCode(uid.value);
 		}
@@ -121,7 +120,7 @@
 
 		function checkUID(uid) {
 			//TODO: check len 26
-			console.log(uid.length)
+			// console.log(uid.length)
 			if(uid.length < 25) return false
 
 			//checks if the value is hex 

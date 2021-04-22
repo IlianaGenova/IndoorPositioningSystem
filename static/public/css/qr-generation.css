@@ -1,7 +1,6 @@
 .body {
   margin-top: 50px;
   width: 100%;
-  text-align: center;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
