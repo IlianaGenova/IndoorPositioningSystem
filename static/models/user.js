@@ -10,15 +10,18 @@ var UserSchema = new mongoose.Schema({
 	  type: String,
 	  trim: true
   },
+  email: {
+		type: String,
+	  unique: true,
+	  trim: true
+	},
 	phone: {
 		type: String,
 	  unique: true,
 	  trim: true
 	},
-	email: {
-		type: String,
-	  unique: true,
-	  trim: true
+  password: {
+		type: String
 	},
 	notes: {
 		type: String,
@@ -48,7 +51,7 @@ UserSchema.statics.authenticate = function (email, password, callback) {
 
 UserSchema.pre('save', function (next) {
   var user = this;
-  bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), function (err, hash) {
+  bcrypt.hash(user.password, 10, function (err, hash) {
     if (err) {
       return next(err);
     }

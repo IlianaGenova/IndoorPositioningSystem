@@ -7,7 +7,6 @@
     "@vector-js/library": "0.0.1",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.5",
-    "cookieparser": "^0.1.0",
     "cors": "^2.8.5",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
@@ -16,7 +15,6 @@
     "node-sass": "^5.0.0",
     "node-trilateration": "^1.0.0",
     "nodemon": "^2.0.6",
-    "p5": "^1.1.9",
     "socket.io": "^3.1.1"
   },
   "scripts": {

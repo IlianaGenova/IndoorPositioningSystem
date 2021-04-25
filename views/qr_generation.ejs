@@ -62,13 +62,10 @@
 			event.preventDefault();
 			address = "http://localhost:8080/admin/tag?taguid=" + uid.value;
 		}
-
 		
 		function generateQR() {
 			event.preventDefault();
-			// var uid = document.getElementById("UID");
-			// var address = "http://localhost:8080/configuration?taguid=" + uid.value;
-
+	
 			if(isGenerated) {
 				alert("QR already generated")
 				return
@@ -101,10 +98,6 @@
 				document.getElementById("image").style.display = "none"
 				document.getElementById("text").style.display = "block"
 			}
-
-			console.log(address)
-			// var qrcode = new QRCode("qrcode");
-			 // qrcode.makeCode(uid.value);
 		}
 
 		function printQR() {
@@ -119,8 +112,7 @@
 		}
 
 		function checkUID(uid) {
-			//TODO: check len 26
-			// console.log(uid.length)
+			//checks if lenght is valid
 			if(uid.length < 25) return false
 
 			//checks if the value is hex 

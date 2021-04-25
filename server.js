@@ -86,9 +86,9 @@ app.use(bodyParser.json());
 //JWT token
 const jwt = require('jsonwebtoken');
 
-function generateAccessToken(username) {
+function generateAccessToken(user) {
 	console.log("generating token")
-  return jwt.sign(username, secrets.secret, { expiresIn: '1800s' });
+  return jwt.sign(user, secrets.secret, { expiresIn: '1800s' });
 }
 
 function authenticateToken(req, res, next) {
@@ -130,11 +130,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/admin', authenticateToken, (req, res, next) => {
-	res.render("admin", { name: "Jamie"});
+	res.render("admin", { name: req.user.username });
 })
 
 app.get('/admin/auth', (req, res, next) => {
-	res.render("admin_login", { name: "Jamie"});
+	res.render("admin_login");
 })
 
 app.post('/admin/auth', (req, res, next) => {
@@ -145,20 +145,13 @@ app.post('/admin/auth', (req, res, next) => {
         err.status = 401;
         return next(err);
       } else {
-				let token = generateAccessToken({ username: admin.name });
+				let token = generateAccessToken({ user: admin._id });
 
-				let auth = 'Bearer ' + token;
-				res.header('Authorization', auth);
+				// let auth = 'Bearer ' + token;
+				// res.header('Authorization', auth);
 
 				res.cookie('token', token, { httpOnly: true, secure: false, maxAge: 3600000 })
-				// return res.cookie('token', token, {
-				// 	expires: new Date(Date.now() + expiration),
-				// 	secure: false, // set to true if your using https
-				// 	httpOnly: true,
-				// });
-
         return res.render("admin", { token: token, name: admin.name});
-				// res.redirect('/admin')
       }
     });
   } else {
@@ -258,9 +251,7 @@ app.post('/admin/maps', authenticateToken, (req, res) => {
 	if (req.body.fileinput != null && req.body.fileinput != "") {
 		var file = JSON.parse(req.body.fileinput);
 
-		console.log(req.body.width + " " + req.body.height)
-
-		if (file != null) { //mime type check omitted
+		if (file != null) { 
 			var data = {
 				date: new Date(),
 				file: file.data,
@@ -273,7 +264,6 @@ app.post('/admin/maps', authenticateToken, (req, res) => {
 
 			if(req.body.activemap == "1") {
 				data.active = true;
-
 				Map.updateMany({active: true}, {$set: {active: false}}, (err, writeResult) => {});
 			}
 
@@ -281,90 +271,185 @@ app.post('/admin/maps', authenticateToken, (req, res) => {
 				if (error) {
 					return next(error);
 				} else {
-					return res.redirect('/');
+					return res.redirect('/admin');
 				}
 			})
 		}
 	}
 })
 
-app.get('/admin/tags', authenticateToken, (req, res) => {
+app.get('/admin/tags', (req, res) => {
 	Tag.find().exec(function (error, tags) {
 		if(error) {
 			console.log(error);
 		}
 		else {
-			res.render("manage-tags", {tags: tags});
+			res.render("manage-tags", {tags: tags, tagid: req.query.tagid});
 		}
 	});
 })
 
-app.get('/admin/anchors', authenticateToken, (req, res) => {
+app.post('/admin/tags', (req, res) => {
+	Tag.updateOne(
+		{ "_id": req.body.oldid },
+		{ "tagID": req.body.id, "name": req.body.name,  main_admin: false }, 
+		function(error) {
+			if(error){
+				console.log(error);
+			}
+			else {
+				console.log("Updated entry")
+				return res.redirect('/admin/tags')
+			}
+		} 
+	)
+})
+
+app.get('/admin/tags/delete', authenticateToken, (req, res) => {
+	Tag.findOne(({"tagID": req.query.tagid}), function (err, tag) {
+		console.log(req.query.tagid)
+		if(err) {
+			console.log(err);
+		} 
+		else if(tag == null) {
+			console.log("Could not find tag with that UID")
+		}
+		else if(tag != null){
+			Tag.deleteOne(({"tagID": tag.tagID}), function (err, tag) {
+				if(err) {
+					console.log(err);
+				}
+				else {
+					return res.redirect('/admin/tags')
+				}
+			})
+		}
+	})
+})
+
+app.get('/admin/anchors', (req, res) => {
 	Anchor.find().exec(function (error, anchors) {
 		if(error) {
 			console.log(error);
 		}
 		else {
-			res.render("manage-anchors", {anchors: anchors});
+			Map.findOne({active: true}, function (error, map) {
+				if(error) {
+					console.log(error);
+				}
+				else {
+					res.render("manage-anchors", {anchors: anchors, anchorid: req.query.anchorid, map: map});
+				}
+			});
 		}
 	});
+})
+
+app.post('/admin/anchors', (req, res) => {
+	Anchor.updateOne(
+		{ "_id": req.body.oldid },
+		{ "anchorID": req.body.id, "position.coordinates": [req.body.x, req.body.y]}, 
+		function(error) {
+			if(error){
+				console.log(error);
+			}
+			else {
+				console.log("Updated entry")
+				return res.redirect('/admin/anchors')
+			}
+		} 
+	)
+})
+
+app.get('/admin/anchors/delete', (req, res) => {
+	Anchor.findOne(({"anchorID": req.query.anchorid}), function (err, anchor) {
+		console.log(req.query.anchorid)
+		if(err) {
+			console.log(err);
+		} 
+		else if(anchor == null) {
+			console.log("Could not find anchor with that UID")
+		}
+		else if(anchor != null){
+			Anchor.deleteOne(({"anchorID": anchor.anchorID}), function (err, anchor) {
+				if(err) {
+					console.log(err);
+				}
+				else {
+					return res.redirect('/admin/anchors')
+				}
+			})
+		}
+	})
 })
 
 app.get('/ranging', (req, res, next) => {
 	// let lon = req.body.lon
 	// let lat = req.body.lat
-	let lon = 216
-	let lat = -102.5
+	// let lon = 226.3
+	// let lat = -102.5
 
-	let data = {
-		tagID: '0x668FF555353292929229',
-		anchorID: '0x668FF555353667267241437',
-		position: {
-			coordinates: [[lon, lat], [lon, lat]]
-			// {
-			// 	lon: lon, 
-			// 	lat: lat
-			// }
-		}
+	// let data = {
+	// 	tagID: '0x668FF555353292929229',
+	// 	anchorID: '0x668FF555353667267241437',
+	// 	distance: 7.56
+	// }
+
+	// Coords.findOne(({"anchorID" : data.anchorID}, {"tagID" : data.tagID}), function (err, conn) {
+	// 	if(err) {
+	// 		console.log(err);
+	// 	} 
+	// 	else if(conn == null) {
+	// 		Coords.create(data, function (error, coords) {
+	// 			if (error) {
+	// 				return next(error);
+	// 			} else {
+	// 				return res.redirect('/');
+	// 			}
+	// 		})
+	// 	}
+// })
+
+		// else {
+		// 	// console.log(conn.position.coordinates[3][1])
+		// 	console.log(conn.position.type + conn.anchorID.type)
+		// 	var coords = [lon, lat]
+		// 	// {
+		// 	// 	lon: 7,
+		// 	// 	lat: 12
+		// 	// }
+
+		// 	Coords.updateOne(conn, 
+		// 		{ $push: 
+		// 			{ "position.coordinates": coords
+		// 				// }
+		// 			}
+		// 		}, function(error) {
+		// 			if(error){
+		// 				console.log(error);
+		// 			}
+		// 		} 
+		// 	)
+		// 	console.log("pushed")
+		// 	return res.redirect('/');
+		// }
+
+	let data2 = {
+		name: "Iliana", 
+		surname: "Genova",
+		email: "iliana.genova.02@gmail.com",
+		phone: "0888610661",
+		password: "youdontwannaknow",
+		notes: "Touring your company today"
 	}
 
-	Coords.findOne(({"anchorID" : data.anchorID}, {"tagID" : data.tagID}, function (err, conn) {
-		if(err) {
-			console.log(err);
-		} 
-		else if(conn == null) {
-			Coords.create(data, function (error, tag) {
-				if (error) {
-					return next(error);
-				} else {
-					return res.redirect('/');
-				}
-			})
-		}
-		else {
-			// console.log(conn.position.coordinates[3][1])
-			console.log(conn.position.type + conn.anchorID.type)
-			var coords = [lon, lat]
-			// {
-			// 	lon: 7,
-			// 	lat: 12
-			// }
-
-			Coords.updateOne(conn, 
-				{ $push: 
-					{ "position.coordinates": coords
-						// }
-					}
-				}, function(error) {
-					if(error){
-						console.log(error);
-					}
-				} 
-			)
-			console.log("pushed")
+	User.create(data2, function (error, user) {
+		if (error) {
+			return error;
+		} else {
 			return res.redirect('/');
 		}
-	}))
+	})
 })
 
 app.get('/admin/anchor', authenticateToken, (req, res, next) => { 

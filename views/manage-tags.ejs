@@ -18,14 +18,14 @@
             <img class="nav-icon" src="/svgs/admin.svg">
           </div> -->
           <div class="headings-text">
-            <h1>Active tags</h1>
-            <h2>List of all current tags</h2>
+            <h1>Tags</h1>
+            <h2>List of all registered tags</h2>
+            <h2>Click on entry to get more info</h2>
           </div>
         </div>
         <!-- TODO last seen on -->
         
         <div class="list">
-
           <% for(let i = 0; i < tags.length; i++) { %>
             <button class="entry" id="tag<%= i %>" value="<%= i %>" onclick="displayEntry();">
               <div class="title">
@@ -35,50 +35,67 @@
             </button>
           <% } %>
 
-          <button class="entry" onclick="generateForm();">
+          <button class="entry" onclick="redirectToRegBoard();">
             <img class="nav-icon" src="/svgs/add.svg">  
           </button>
 
         </div>
-
-        <!-- <input class="submit submit-btn" type="submit"> -->
       </div>
-
-			<img id="img" style="display:block" class="logo toggle" src="/svgs/webmap.svg" alt="-Stay connected-">
-
-      <form id="info" style="display:none" class="form toggle" action="/admin/add" method="post" onsubmit="submitForm();">
+<!-- TODO fix css -->
+      <% if(tagid) { %>
+      <form id="info" class="form toggle" action="" method="post" onsubmit="updateEntry();">
         <div class="form-heading">
-          <h2 class="title">New admin</h2>
-          <h3 class="subtitle">Welcome aboard!</h3>
+          <h2 class="title">Tag info</h2>
+          <br>
         </div> 
 
-				<input type="input" class="option info-option" name="name" placeholder="Name"/>
+				<input type="input" class="option info-option" name="name" value="<%= tags[tagid].name %>"/>
 				</br>
-        <input type="input" class="option info-option" name="surname" placeholder="Surname"/>
-				</br>
-        <input type="input" class="option info-option" name="email" placeholder="Email"/>
-				</br>
-        <input type="input" class="option info-option" name="phone" placeholder="Phone"/>
-				</br>
+        <input type="input" id="tagid" class="option info-option" name="id" value="<%= tags[tagid].tagID %>"/>
+        </br>
+        <input style="display:none" type="input" id="tagid" class="option info-option" name="oldid" value="<%= tags[tagid].id %>"/>
 				<!-- TODO if main admin - give rights to another -->
         <!-- TODO delete profile -->
-        <!-- TODO incorporate pwd -->
-				<input class="submit old" style="display:block" type="submit" value="Change">
-        <input class="submit old" style="display:block" type="submit" value="Delete">
+				<input class="submit old" type="button" onclick="enableWrite()" value="Change">
+        <input class="submit old" type="button" onclick="deleteEntry()" value="Delete">
 				</br>
-				<input class="submit" type="submit">
+				<input class="submit" type="button" onclick="updateEntry()" value="Update">
 			</form>
+
+      <% } else { %>
+        <img id="img" style="display:block" class="logo toggle" src="/svgs/webmap.svg" alt="-Stay connected-">
+      <% } %>
 		</main>
 	</div>
 
 
 	<script type="text/javascript">
-		// var form = document.getElementById("form")
 		let pic = document.getElementById("img")
     let info = document.getElementById("info")
     let oldAdminElements = document.getElementsByClassName('old');
     let formFields = document.getElementsByClassName('info-option');
 
+    readOnly();
+
+    function redirectToRegBoard() {
+			location.href = "http://localhost:8080/admin/generate_QR";
+    }
+
+    function displayEntry() {
+      location.href = "http://localhost:8080/admin/tags?tagid=" + event.currentTarget.value
+    }
+
+    function deleteEntry() {
+      let id = document.getElementById("tagid")
+      location.href = "http://localhost:8080/admin/tags/delete?tagid=" + id.value
+    }
+
+    function updateEntry() {
+      let id = document.getElementById("tagid")
+      let address = "http://localhost:8080/admin/tags?tagid=" + event.currentTarget.value
+      info.action = address
+      submitForm();
+    }
 
 		function generateForm() {
 			event.preventDefault();
@@ -89,18 +106,6 @@
       hideButtons();
       enableWrite();
 		}
-
-    function displayEntry() {
-      // generateForm();
-      readOnly();
-
-      // console.log(admins)
-    }
-
-    function editEntry() {
-
-
-    }
 
     function submitForm() {
       info.submit();

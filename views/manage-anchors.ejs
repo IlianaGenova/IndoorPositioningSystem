@@ -12,8 +12,29 @@
 <body>
   <!-- TODO edit profiles and add additional info -->
 		<main class="body">
-      <img id="img" style="display:block" class="logo toggle" src="/svgs/webmap.svg" alt="-Stay connected-">
-
+      <% if(anchorid) { %>
+        <form id="info" class="form toggle" action="" method="post" onsubmit="updateEntry();">
+          <div class="form-heading">
+            <h2 class="title">Anchor info</h2>
+            <br>
+          </div> 
+          <div id="my-interactive" class="interactive" style="background: url('<%= "data:" + map.fileType + ";base64," + map.file %>') no-repeat center #eee; "></div>
+          <input type="input" class="option info-option" name="x" value="<%= anchors[anchorid].position.coordinates[0] %>"/>
+          <input type="input" class="option info-option" name="y" value="<%= anchors[anchorid].position.coordinates[1] %>"/>
+          <input type="input" id="anchorid" class="option info-option" name="id" value="<%= anchors[anchorid].anchorID %>"/>
+          </br>
+          <input style="display:none" type="input" id="anchorid" class="option info-option" name="oldid" value="<%= anchors[anchorid].id %>"/>
+          <!-- TODO if main admin - give rights to another -->
+          <!-- TODO delete profile -->
+          <input class="submit old" type="button" onclick="enableWrite()" value="Change">
+          <input class="submit old" type="button" onclick="deleteEntry()" value="Delete">
+          </br>
+          <input class="submit" type="button" onclick="updateEntry()" value="Update">
+        </form>
+  
+        <% } else { %>
+          <img id="img" style="display:block" class="logo toggle" src="/svgs/webmap.svg" alt="-Stay connected-">
+      <% } %>
 			<div class="main">
         <div class="headings">
           <!-- <div class="headings-picture">
@@ -37,7 +58,7 @@
             </button>
           <% } %>
 
-          <button class="entry" onclick="generateForm();">
+          <button class="entry" onclick="redirectToRegBoard();">
             <img class="nav-icon" src="/svgs/add.svg">  
           </button>
 
@@ -46,40 +67,37 @@
         <!-- <input class="submit submit-btn" type="submit"> -->
       </div>
 
-
-      <form id="info" style="display:none" class="form toggle" action="/admin/add" method="post" onsubmit="submitForm();">
-        <div class="form-heading">
-          <h2 class="title">New admin</h2>
-          <h3 class="subtitle">Welcome aboard!</h3>
-        </div> 
-
-				<input type="input" class="option info-option" name="name" placeholder="Name"/>
-				</br>
-        <input type="input" class="option info-option" name="surname" placeholder="Surname"/>
-				</br>
-        <input type="input" class="option info-option" name="email" placeholder="Email"/>
-				</br>
-        <input type="input" class="option info-option" name="phone" placeholder="Phone"/>
-				</br>
-				<!-- TODO if main admin - give rights to another -->
-        <!-- TODO delete profile -->
-        <!-- TODO incorporate pwd -->
-				<input class="submit old" style="display:block" type="submit" value="Change">
-        <input class="submit old" style="display:block" type="submit" value="Delete">
-				</br>
-				<input class="submit" type="submit">
-			</form>
 		</main>
 	</div>
 
 
 	<script type="text/javascript">
-		// var form = document.getElementById("form")
 		let pic = document.getElementById("img")
     let info = document.getElementById("info")
     let oldAdminElements = document.getElementsByClassName('old');
     let formFields = document.getElementsByClassName('info-option');
 
+    readOnly();
+
+    function redirectToRegBoard() {
+			location.href = "http://localhost:8080/admin/generate_QR";
+    }
+
+    function displayEntry() {
+      location.href = "http://localhost:8080/admin/anchors?anchorid=" + event.currentTarget.value
+    }
+
+    function deleteEntry() {
+      let id = document.getElementById("anchorid")
+      location.href = "http://localhost:8080/admin/anchors/delete?anchorid=" + id.value
+    }
+
+    function updateEntry() {
+      let id = document.getElementById("anchorid")
+      let address = "http://localhost:8080/admin/anchors?anchorid=" + event.currentTarget.value
+      info.action = address
+      submitForm();
+    }
 
 		function generateForm() {
 			event.preventDefault();
@@ -90,18 +108,6 @@
       hideButtons();
       enableWrite();
 		}
-
-    function displayEntry() {
-      // generateForm();
-      readOnly();
-
-      // console.log(admins)
-    }
-
-    function editEntry() {
-
-
-    }
 
     function submitForm() {
       info.submit();
@@ -143,7 +149,6 @@
         elem.style.display = "block";
       }
     }
-
 	</script>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>

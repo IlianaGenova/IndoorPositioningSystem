@@ -8,10 +8,14 @@
     flex-flow: row wrap; }
     .body .headings * {
       margin: 0px;
-      margin-left: 7px; }
+      margin-left: 7px;
+      font-weight: 300; }
+    .body .headings h1 {
+      margin-left: 0;
+      margin-bottom: 0.1em; }
     .body .headings h2 {
       font-weight: normal;
-      font-size: 1.8em; }
+      font-size: 1.7em; }
     .body .headings .headings-picture {
       margin-right: 20px;
       width: 100px;
@@ -78,7 +82,7 @@
     max-height: 350px;
     width: 80%; }
     .body .form .form-heading {
-      margin: 60px auto 0px auto;
+      margin: 120px auto 0px auto;
       height: 10%; }
       .body .form .form-heading .title {
         font-size: 4em;
