@@ -5,6 +5,7 @@ const uri = secrets.uri
 const client = new MongoClient(uri, { useNewUrlParser: true })
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const SerialPort = require("serialport");
 
 //client on connect -> DB
 client.connect(err => {
@@ -116,6 +117,44 @@ function authenticateToken(req, res, next) {
     next()
   })
 }
+
+//Reading data from anchors via ports
+var readline = SerialPort.parsers.Readline;
+var parser = new readline({ delimiter: '\r\n' }); 
+var receivedData = " "
+// var Ready = SerialPort.parsers.Ready;
+// const parser = new Ready({ delimiter: 'READY' });
+
+let COMport = new SerialPort("COM5", {
+  baudRate: 9600,
+	autoOpen: true,
+	parser: parser
+}).setEncoding('utf8');;
+
+function writetoPort() {
+	COMport.on('data', function (data) {
+		COMport.write("Writing data");
+	});
+}
+
+function readFromPort() {
+	COMport.on('data', function(data) {
+		receivedData = receivedData + data;
+		// console.log(data); 
+		// console.log(data.toString('utf8'))
+  });		
+}
+
+COMport.on('open', function() {
+  readFromPort();
+});
+
+function latchDataToBD() {
+	foreach
+}
+
+setInterval(latchDataToBD, 5000);
+
 // const token = generateAccessToken({ username: req.body.username });
 // res.json(token);
 // userside
@@ -126,6 +165,7 @@ function authenticateToken(req, res, next) {
 
 //main route
 app.get('/', (req, res) => {
+	console.log(datafromport)
 	res.render("index");
 });
 
